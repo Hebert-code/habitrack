@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Habitos: View {
+struct Habits: View {
     @State private var habitos: [(String, String, Double)] = [
         ("Exercício", "30 minutos", 0.5),
         ("Meditação", "10 minutos", 0.75)
@@ -154,5 +154,5 @@ struct HabitoItem: View {
 
 
 #Preview {
-    Habitos()
+    Habits()
 }

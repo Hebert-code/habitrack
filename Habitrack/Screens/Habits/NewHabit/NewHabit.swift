@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-
-struct add_habito: View {
+struct NewHabit: View {
     @State private var nomeHabito: String = ""
     @State private var descricaoHabito: String = ""
     @State private var frequencia: String = "Diário"
@@ -92,10 +91,6 @@ struct add_habito: View {
     }
 }
 
-
-
-
-
 #Preview {
-    add_habito()
+    NewHabit()
 }

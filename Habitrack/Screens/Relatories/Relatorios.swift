@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Relatorios: View {
+struct Relatories: View {
     var body: some View {
         NavigationView {
             ScrollView {
@@ -122,5 +122,5 @@ struct PerformanceRow: View {
 }
 
 #Preview {
-    Relatorios()
+    Relatories()
 }

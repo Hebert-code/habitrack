@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct add_Meta: View {
+struct AddMeta: View {
     @State private var nomeMeta = ""
     @State private var descricao = ""
     @State private var categoriaSelecionada: String? = nil
@@ -141,7 +141,6 @@ struct add_Meta: View {
 
 }
 
-
 #Preview {
-    add_Meta()
+    AddMeta()
 }
