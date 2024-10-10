@@ -62,7 +62,7 @@ struct AddMeta: View {
                     Button(action: {
                         enviarMetaParaAPI()
                     }) {
-                        Text("Adicionar marco")
+                        Text("Adicionar meta")
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
