@@ -19,7 +19,7 @@
 		019B3F7A2CB6F730008699CD /* Relatorios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B3F792CB6F730008699CD /* Relatorios.swift */; };
 		019B3F7C2CB6F74F008699CD /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B3F7B2CB6F74F008699CD /* Achievements.swift */; };
 		019B3F7E2CB6F76F008699CD /* Monitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B3F7D2CB6F76F008699CD /* Monitoring.swift */; };
-		C58BCF722CB84396009FF8DF /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF712CB84396009FF8DF /* Home.swift */; };
+		81BB8D082CB84B3D00EC6B3D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB8D072CB84B3D00EC6B3D /* Home.swift */; };
 		C58BCF7B2CB84607009FF8DF /* QuickLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF7A2CB84607009FF8DF /* QuickLinkView.swift */; };
 		C58BCF7E2CB84668009FF8DF /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF7D2CB84668009FF8DF /* HabitCardView.swift */; };
 		C58BCF802CB846C1009FF8DF /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF7F2CB846C1009FF8DF /* SectionTitle.swift */; };
@@ -40,7 +40,7 @@
 		019B3F792CB6F730008699CD /* Relatorios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relatorios.swift; sourceTree = "<group>"; };
 		019B3F7B2CB6F74F008699CD /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
 		019B3F7D2CB6F76F008699CD /* Monitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitoring.swift; sourceTree = "<group>"; };
-		C58BCF712CB84396009FF8DF /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Home.swift; path = ../../../../../../../Documents/Home.swift; sourceTree = "<group>"; };
+		81BB8D072CB84B3D00EC6B3D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		C58BCF7A2CB84607009FF8DF /* QuickLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLinkView.swift; sourceTree = "<group>"; };
 		C58BCF7D2CB84668009FF8DF /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
 		C58BCF7F2CB846C1009FF8DF /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
@@ -77,6 +77,7 @@
 		019B3F5C2CB6F307008699CD /* Habitrack */ = {
 			isa = PBXGroup;
 			children = (
+				81BB8D062CB84B3300EC6B3D /* Home */,
 				C58BCF6B2CB842A2009FF8DF /* Widgets */,
 				C58BCF6A2CB84291009FF8DF /* ViewModels */,
 				C58BCF692CB84269009FF8DF /* Models */,
@@ -97,6 +98,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		81BB8D062CB84B3300EC6B3D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				81BB8D072CB84B3D00EC6B3D /* Home.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		C58BCF672CB84242009FF8DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,7 +122,6 @@
 				C58BCF6F2CB842D2009FF8DF /* Goals */,
 				C58BCF6E2CB842C5009FF8DF /* Habits */,
 				C58BCF6D2CB842BE009FF8DF /* Dashboard */,
-				C58BCF6C2CB842B6009FF8DF /* Home */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -137,14 +145,6 @@
 			children = (
 			);
 			path = Widgets;
-			sourceTree = "<group>";
-		};
-		C58BCF6C2CB842B6009FF8DF /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				C58BCF712CB84396009FF8DF /* Home.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		C58BCF6D2CB842BE009FF8DF /* Dashboard */ = {
@@ -310,8 +310,8 @@
 				019B3F762CB6F6E0008699CD /* Habits.swift in Sources */,
 				019B3F722CB6F6AD008699CD /* AddMeta.swift in Sources */,
 				C58BCF7B2CB84607009FF8DF /* QuickLinkView.swift in Sources */,
-				C58BCF722CB84396009FF8DF /* Home.swift in Sources */,
 				019B3F742CB6F6CC008699CD /* Goals.swift in Sources */,
+				81BB8D082CB84B3D00EC6B3D /* Home.swift in Sources */,
 				019B3F6E2CB6F65D008699CD /* Dashboard.swift in Sources */,
 				019B3F5E2CB6F307008699CD /* Main.swift in Sources */,
 				C58BCF7E2CB84668009FF8DF /* HabitCardView.swift in Sources */,

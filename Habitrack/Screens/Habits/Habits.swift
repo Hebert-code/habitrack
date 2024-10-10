@@ -55,7 +55,7 @@ struct Habits: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: add_habito()) {
+                    NavigationLink(destination: NewHabit()) {
                         Text("Adicionar Hábito")
                             .font(.headline)
                             .frame(maxWidth: .infinity, maxHeight: 44)
