@@ -1,76 +1,56 @@
-//
-//  add_habito.swift
-//  Habitrack
-//
-//  Created by Turma01-14 on 09/10/24.
-//
-
 import SwiftUI
 
 struct NewHabit: View {
-    @State private var nomeHabito: String = ""
-    @State private var descricaoHabito: String = ""
-    @State private var frequencia: String = "Diário"
-    @State private var dataInicio: Date = Date()
-    @State private var metaSelecionada: String = "Meta 1"
-    @State private var habilitarLembretes: Bool = false
-    @State private var frequenciaLembrete: String = ""
-    @State private var birthDate = Date.now
-
-    var frequencias = ["Diário", "Semanal", "Mensal"]
-    var metas = ["Meta 1", "Meta 2", "Meta 3"]
-    var frequenciasLembrete = ["Diário", "Semanal", "Mensal"]
+    @StateObject private var viewModel = NewHabitViewModel()
 
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Nome do Hábito"))
-                {
-                    TextField("Insira o nome do hábito", text: $nomeHabito)
-                }.foregroundColor(.black)
-                    
-                
+                Section(header: Text("Nome do Hábito")) {
+                    TextField("Insira o nome do hábito", text: $viewModel.habit.nomeHabito)
+                }
+
                 Section(header: Text("Descrição")) {
-                    TextField("Descreva seu hábito", text: $descricaoHabito)
-                }.foregroundColor(.black)
+                    TextField("Descreva seu hábito", text: $viewModel.habit.descricaoHabito)
+                }
 
                 Section(header: Text("Frequência")) {
-                    Picker("Frequência", selection: $frequencia) {
-                        ForEach(frequencias, id: \.self) { freq in
+                    Picker("Frequência", selection: $viewModel.habit.frequencia) {
+                        ForEach(viewModel.frequencias, id: \.self) { freq in
                             Text(freq)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                }.foregroundColor(.black)
-               
+                }
 
-                    DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
-                
+                DatePicker("Data de Início", selection: $viewModel.habit.dataInicio, displayedComponents: .date)
 
                 Section(header: Text("Meta Correspondente")) {
-                    Picker("Meta", selection: $metaSelecionada) {
-                        ForEach(metas, id: \.self) { meta in
+                    Picker("Meta", selection: $viewModel.habit.metaSelecionada) {
+                        ForEach(viewModel.metas, id: \.self) { meta in
                             Text(meta)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                }.foregroundColor(.black)
+                }
 
                 Section(header: Text("Configurações de Lembrete")) {
-                    Toggle(isOn: $habilitarLembretes) {
+                    Toggle(isOn: $viewModel.habit.habilitarLembretes) {
                         Text("Habilitar lembretes")
                     }
-                    
-                    if habilitarLembretes {
-                        Picker("Frequência", selection: $frequenciaLembrete) {
-                            ForEach(frequenciasLembrete, id: \.self) { freq in
+
+                    if viewModel.habit.habilitarLembretes {
+                        Picker("Frequência", selection: $viewModel.habit.frequenciaLembrete) {
+                            ForEach(viewModel.frequenciasLembrete, id: \.self) { freq in
                                 Text(freq)
                             }
                         }
                     }
-                }.foregroundColor(.black)
+                }
 
-                Button(action: salvarHabito) {
+                Button(action: {
+                    viewModel.salvarHabito()
+                }) {
                     Text("Salvar Hábito")
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
@@ -80,14 +60,7 @@ struct NewHabit: View {
                 .cornerRadius(8)
             }
             .navigationBarTitle("Novo Hábito", displayMode: .inline)
-
         }
-        
-    }
-
-    func salvarHabito() {
-        // Lógica para salvar o hábito
-        print("Hábito salvo!")
     }
 }
 
