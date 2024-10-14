@@ -8,11 +8,13 @@ struct DashboardView: View {
                     // Links Rápidos
                     Text("Links rápidos")
                         .font(.headline)
+                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                     
                     HStack {
                         QuickLinkView(title: "Relatórios", imageName: "chart.bar")
                         QuickLinkView(title: "Recomendações", imageName: "pencil")
                     }
+                    .frame(alignment: .center)
                     .padding(.horizontal)
                     
                     // Objetivos em Progresso Button
