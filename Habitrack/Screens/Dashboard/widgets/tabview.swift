@@ -24,17 +24,17 @@ struct MainView: View {
             
             Habits()
                 .tabItem {
-                    Label("Hábitos", systemImage: "checkmark.circle")
+                    Label("Hábitos", systemImage: "arrow.triangle.2.circlepath")
                 }
             
             Goals()
                 .tabItem {
-                    Label("Metas", systemImage: "flag")
+                    Label("Metas", systemImage: "trophy.fill")
                 }
             
             Archievements()
                 .tabItem {
-                    Label("Acompanhamento", systemImage: "clock")
+                    Label("Acompanhamento", systemImage: "chart.bar.fill")
                 }
         }
     }

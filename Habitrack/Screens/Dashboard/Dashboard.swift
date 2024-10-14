@@ -72,7 +72,7 @@ struct DashboardView: View {
                                             NavigationLink(destination: Recomendations()) {
                                                 NotificationButton(title: "Dicas e Motivação")
                                             }
-                                            NavigationLink(destination: Relatories()) {
+                                            NavigationLink(destination: Relatories() ) {
                                                 NotificationButton(title: "Relatórios")
                                             }
                                             NavigationLink(destination: Goals()) {
@@ -85,7 +85,7 @@ struct DashboardView: View {
                                         .padding(.horizontal)
                 }
             }
-            .navigationTitle("Início") 
+            .navigationBarTitle("Início", displayMode: .inline)
             }
     }
 }

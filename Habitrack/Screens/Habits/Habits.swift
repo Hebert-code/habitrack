@@ -65,7 +65,7 @@ struct Habits: View {
             }
             .padding()
             .background(Color.white)
-            .navigationTitle("Hábitos")
+            .navigationBarTitle("Hábitos", displayMode: .inline)
         }
     }
 }
