@@ -17,20 +17,17 @@ struct NewHabit: View {
         VStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-
                     // Campo Nome do Hábito
-                    Text("Nome do Hábito")
-                        .font(.headline)
-                    TextField("Insira o nome do hábito", text: $nomeHabito)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal)
+                    SimpleInput(
+                        title: "Nome do Hábito",
+                        placeholder: "Insira o nome do Hábito",
+                        fieldName: $nomeHabito)
 
                     // Campo Descrição
-                    Text("Descrição")
-                        .font(.headline)
-                    TextField("Descreva seu hábito", text: $descricaoHabito)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal)
+                    SimpleInput(
+                        title: "Descrição",
+                        placeholder: "Descreva seu hábito",
+                        fieldName: $descricaoHabito)
 
                     // Frequência (Segmented Picker)
                     Text("Frequência")
@@ -92,25 +89,6 @@ struct NewHabit: View {
                 }
                 .padding(.top)
             }
-
-            // TabView
-            TabView {
-                Text("Painel")
-                    .tabItem {
-                        Label("Painel", systemImage: "house")
-                    }
-
-                Text("Metas")
-                    .tabItem {
-                        Label("Metas", systemImage: "flag")
-                    }
-
-                Text("Acompanhamento")
-                    .tabItem {
-                        Label("Acompanhamento", systemImage: "chart.bar")
-                    }
-            }
-            .frame(height: 60) // Altura para a TabView
         }
         .navigationBarTitle("Novo Hábito", displayMode: .inline)
     }
