@@ -20,16 +20,18 @@ struct AddMeta: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("Nome da meta")
-                        .font(.headline)
-                    TextField("Digite o nome da sua meta", text: $nomeMeta)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                    Text("Descrição")
-                        .font(.headline)
-                    TextField("Descreva sua meta com mais detalhes", text: $descricao)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-
+                    
+                    SimpleInput(
+                        title: "Nome",
+                        placeholder: "Digite o nome da Meta",
+                        fieldName: $nomeMeta)
+                    
+                    SimpleInput(
+                        title: "Descrição",
+                        placeholder: "Descreva sua meta com mais detalhes",
+                        fieldName: $descricao)
+                    
+                   
                     OptionSelection(
                         title: "Categorias",
                         categoriaSelecionada: $categoriaSelecionada,
@@ -39,12 +41,13 @@ struct AddMeta: View {
                         .font(.headline)
                     DatePicker("", selection: $dataInicio, displayedComponents: .date)
                         .labelsHidden()
-                        .background(Color.white.opacity(0.2))
+                        
 
                     Text("Data de término")
                         .font(.headline)
                     DatePicker("", selection: $dataTermino, displayedComponents: .date)
                         .labelsHidden()
+        
 
                     Button(action: {
                         enviarMetaParaAPI()
@@ -59,7 +62,7 @@ struct AddMeta: View {
                 }
                 .padding()
             }
-            .navigationTitle("Novo Meta")
+            .navigationBarTitle("Nova Meta", displayMode: .inline)
 
         }
     }

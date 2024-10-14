@@ -20,14 +20,7 @@ struct Goals: View {
         NavigationView{
             VStack {
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 20) {
-                        // Progresso geral
-                        Text("Progresso geral")
-                            .font(.title2)
-                            .bold()
-                            .padding(.horizontal)
-                        
-                        
+                    VStack(alignment: .leading, spacing: 15) {
                         HStack {
                             VStack {
                                 Text("Total de Metas")
