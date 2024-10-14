@@ -24,10 +24,10 @@ struct Archievements: View {
         NavigationView{
             VStack {
                 VStack(spacing: 20) {
-                    // Seção de Resumo
+                    Text("Realizados")
                     HStack {
                         VStack {
-                            Text("Hábitos Cumpridos")
+                            Text("Hábitos")
                                 .font(.headline)
                             Text("\(habitosCumpridos)")
                                 .font(.largeTitle)
@@ -36,7 +36,7 @@ struct Archievements: View {
                         .frame(maxWidth: .infinity)
                         
                         VStack {
-                            Text("Metas Alcançadas")
+                            Text("Metas")
                                 .font(.headline)
                             Text("\(metasAlcancadas)")
                                 .font(.largeTitle)
@@ -44,7 +44,9 @@ struct Archievements: View {
                         }
                         .frame(maxWidth: .infinity)
                     }
-                    .padding(.top)
+                    .padding(15)
+                    .background(.red)
+                    .padding(10)
                     
                     // Seção de Linha do Tempo
                     Text("Linha do Tempo")

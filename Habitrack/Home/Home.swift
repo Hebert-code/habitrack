@@ -31,7 +31,8 @@ struct Home: View {
             .navigationDestination(isPresented: $isActive) { // Usando navigationDestination
                 MainView() // Navega para MainView
             }
-            .navigationBarHidden(true) // Oculta a barra de navegação
+            //.navigationBarBackButtonHidden(false)
+           // .navigationBarHidden(false) // Oculta a barra de navegação
         }
     }
 }

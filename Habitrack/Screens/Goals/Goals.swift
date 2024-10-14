@@ -27,6 +27,7 @@ struct Goals: View {
                             .bold()
                             .padding(.horizontal)
                         
+                        
                         HStack {
                             VStack {
                                 Text("Total de Metas")
@@ -47,6 +48,7 @@ struct Goals: View {
                         }
                         .padding()
                         .background(Color.gray.opacity(0.2))
+                        .padding()
                         .cornerRadius(10)
                         
                         
@@ -108,6 +110,7 @@ struct MetaRowView: View {
         HStack {
             Image(systemName: meta.icone)
                 .resizable()
+                .scaledToFit()
                 .frame(width: 40, height: 40)
                 .padding(.trailing, 10)
             VStack(alignment: .leading) {
