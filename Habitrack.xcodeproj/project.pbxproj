@@ -21,6 +21,7 @@
 		019B3F7A2CB6F730008699CD /* Relatorios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B3F792CB6F730008699CD /* Relatorios.swift */; };
 		019B3F7C2CB6F74F008699CD /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B3F7B2CB6F74F008699CD /* Achievements.swift */; };
 		019B3F7E2CB6F76F008699CD /* Monitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B3F7D2CB6F76F008699CD /* Monitoring.swift */; };
+		810E73E12CBD92A4006775E7 /* OptionSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E73E02CBD92A4006775E7 /* OptionSelection.swift */; };
 		81BB8D082CB84B3D00EC6B3D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB8D072CB84B3D00EC6B3D /* Home.swift */; };
 		81BB8D0A2CB859B500EC6B3D /* tabview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB8D092CB859B500EC6B3D /* tabview.swift */; };
 		C5648F792CBD91BC00B9513E /* ThreeOptionsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5648F782CBD91BC00B9513E /* ThreeOptionsSelection.swift */; };
@@ -47,6 +48,7 @@
 		019B3F792CB6F730008699CD /* Relatorios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relatorios.swift; sourceTree = "<group>"; };
 		019B3F7B2CB6F74F008699CD /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
 		019B3F7D2CB6F76F008699CD /* Monitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitoring.swift; sourceTree = "<group>"; };
+		810E73E02CBD92A4006775E7 /* OptionSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OptionSelection.swift; path = Habitrack/Screens/Dashboard/OptionSelection.swift; sourceTree = SOURCE_ROOT; };
 		81BB8D072CB84B3D00EC6B3D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		81BB8D092CB859B500EC6B3D /* tabview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabview.swift; sourceTree = "<group>"; };
 		C5648F782CBD91BC00B9513E /* ThreeOptionsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeOptionsSelection.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				C58BCF832CBD8DE1009FF8DF /* SimpleInput.swift */,
 				C5648F782CBD91BC00B9513E /* ThreeOptionsSelection.swift */,
+				810E73E02CBD92A4006775E7 /* OptionSelection.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C58BCF802CB846C1009FF8DF /* SectionTitle.swift in Sources */,
+				810E73E12CBD92A4006775E7 /* OptionSelection.swift in Sources */,
 				019B3F702CB6F695008699CD /* NewHabit.swift in Sources */,
 				019B3F7E2CB6F76F008699CD /* Monitoring.swift in Sources */,
 				019B3F762CB6F6E0008699CD /* Habits.swift in Sources */,
