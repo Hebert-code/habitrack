@@ -1,51 +1,53 @@
 import Foundation
-import SwiftUI
+import Combine
 
-class NewHabitViewModel: ObservableObject {
-    @Published var habit = Habit(
-        nomeHabito: "",
-        descricaoHabito: "",
-        frequencia: "Diário",
-        dataInicio: Date(),
-        metaSelecionada: "Meta 1",
-        habilitarLembretes: false,
-        frequenciaLembrete: ""
-    )
+final class HabitListViewModel: ObservableObject {
+    
+    @Published var habits = [Habit]()
+    let webService = WebService()
     
     let frequencias = ["Diário", "Semanal", "Mensal"]
     let metas = ["Meta 1", "Meta 2", "Meta 3"]
     let frequenciasLembrete = ["Diário", "Semanal", "Mensal"]
+    
+    init() {
+        fetchHabits()
+    }
 
-    func salvarHabito() {
-        guard let url = URL(string: "http://10.87.155.129:8888/enviar") else {
-                    print("URL inválida")
-                    return
+    private func fetchHabits() {
+        webService.getAllHabits { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let habits):
+                    self?.habits = habits
+                case .failure(let error):
+                    print("Error fetching habits: \(error)")
                 }
+            }
+        }
+    }
 
-                var request = URLRequest(url: url)
-                request.httpMethod = "POST"
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    func deleteHabit(at index: Int) {
+        webService.deleteHabit(id: habits[index].id) { [weak self] in
+            self?.fetchHabits()
+        }
+    }
 
-                do {
-                    let jsonData = try JSONEncoder().encode(habit)
-                    request.httpBody = jsonData
+    // Insert a new habit
+    func insertHabit(nomeHabito: String, descricaoHabito: String, frequencia: String, dataInicio: String, metaSelecionada: String, habilitarLembretes: Bool, frequenciaLembrete: String) {
+        let newHabit = Habit(nomeHabito: nomeHabito, descricaoHabito: descricaoHabito, frequencia: frequencia, dataInicio: dataInicio, metaSelecionada: metaSelecionada, habilitarLembretes: habilitarLembretes, frequenciaLembrete: frequenciaLembrete)
+        
+        webService.insertHabit(habit: newHabit) { [weak self] in
+            self?.fetchHabits()
+        }
+    }
 
-                    URLSession.shared.dataTask(with: request) { data, response, error in
-                        if let error = error {
-                            print("Erro ao enviar dados: \(error.localizedDescription)")
-                            return
-                        }
-
-                        if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                            print("Meta enviada com sucesso!")
-                        } else {
-                            print("Falha ao enviar a meta.")
-                        }
-                    }.resume()
-
-                } catch {
-                    print("Erro ao serializar dados: \(error.localizedDescription)")
-                }
-        print("Hábito salvo: \(habit)")
+    // Update an existing habit
+    func updateHabit(habit: Habit, newNomeHabito: String) {
+        let updatedHabit = Habit(id: habit.id, nomeHabito: newNomeHabito, descricaoHabito: habit.descricaoHabito, frequencia: habit.frequencia, dataInicio: habit.dataInicio, metaSelecionada: habit.metaSelecionada, habilitarLembretes: habit.habilitarLembretes, frequenciaLembrete: habit.frequenciaLembrete)
+        
+        webService.updateHabit(habit: updatedHabit) { [weak self] in
+            self?.fetchHabits()
+        }
     }
 }
