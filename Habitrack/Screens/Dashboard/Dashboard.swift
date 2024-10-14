@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MainView: View {
+struct DashboardView: View {
     var body: some View {
         NavigationView {
             ScrollView {
@@ -69,27 +69,24 @@ struct MainView: View {
                     .padding()
                     
                     VStack(spacing: 16) {
-                        NotificationButton(title: "Dicas e Motivação")
-                        NotificationButton(title: "Relatórios")
-                        NotificationButton(title: "Conquistas")
-                        NotificationButton(title: "Histórico")
-                    }
-                    .padding(.horizontal)
+                                            NavigationLink(destination: Recomendations()) {
+                                                NotificationButton(title: "Dicas e Motivação")
+                                            }
+                                            NavigationLink(destination: Relatories() ) {
+                                                NotificationButton(title: "Relatórios")
+                                            }
+                                            NavigationLink(destination: Goals()) {
+                                                NotificationButton(title: "Conquistas")
+                                            }
+                                            NavigationLink(destination: Archievements()) {
+                                                NotificationButton(title: "Histórico")
+                                            }
+                                        }
+                                        .padding(.horizontal)
                 }
             }
-            .navigationTitle("Início")
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Spacer()
-                    Button("Hábitos") {}
-                    Spacer()
-                    Button("Metas") {}
-                    Spacer()
-                    Button("Acompanhamento") {}
-                    Spacer()
-                }
+            .navigationBarTitle("Início", displayMode: .inline)
             }
-        }
     }
 }
 

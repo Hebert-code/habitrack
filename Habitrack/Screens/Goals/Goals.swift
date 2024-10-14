@@ -17,76 +17,79 @@ struct Goals: View {
     ]
     
     var body: some View {
-        VStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    // Progresso geral
-                    Text("Progresso geral")
-                        .font(.title2)
-                        .bold()
-                        .padding(.horizontal)
-                    
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Total de Metas")
-                                .font(.subheadline)
-                            Text("\(totalMetas)")
-                                .font(.title)
-                        }
-                        .padding()
-                        Spacer()
-                        VStack(alignment: .leading) {
-                            Text("Concluídas")
-                                .font(.subheadline)
-                            Text("\(metasConcluidas)")
-                                .font(.title)
-                        }
-                        .padding()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-                    
-                    // Seus progresso
-                    HStack {
-                        Text("Seus progresso")
-                            .font(.title3)
+        NavigationView{
+            VStack {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        // Progresso geral
+                        Text("Progresso geral")
+                            .font(.title2)
                             .bold()
-                        Spacer()
-                        Button(action: {
-                            // Ação do filtro
-                        }) {
-                            Text("Filtrar")
-                                .font(.subheadline)
-                                .foregroundColor(.blue)
-                        }
-                    }
-                    .padding(.horizontal)
-                    
-                    ForEach(metas) { meta in
-                        MetaRowView(meta: meta)
                             .padding(.horizontal)
-                    }
-                    
-                    // Botão Adicionar Meta
-                    Button(action: {
-                        // Ação para adicionar nova meta
-                    }) {
-                        Text("Adicionar Meta")
+                        
+                        HStack {
+                            VStack {
+                                Text("Total de Metas")
+                                    .font(.subheadline)
+                                Text("\(totalMetas)")
+                                    .font(.title)
+                            }
+                            
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
+                            
+                            VStack {
+                                Text("Concluídas")
+                                    .font(.subheadline)
+                                Text("\(metasConcluidas)")
+                                    .font(.title)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(10)
+                        
+                        
+                        HStack {
+                            Text("Seus progresso")
+                                .font(.title3)
+                                .bold()
+                            Spacer()
+                            Button(action: {
+                                // Ação do filtro
+                            }) {
+                                Text("Filtrar")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                        .padding(.horizontal)
+                        
+                        ForEach(metas) { meta in
+                            MetaRowView(meta: meta)
+                                .padding(.horizontal)
+                        }
+                        
+                        // Botão Adicionar Meta
+                        Button(action: {
+                            // Ação para adicionar nova meta
+                        }) {
+                            Text("Adicionar Meta")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.black)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 20)
                     }
-                    .padding(.horizontal)
-                    .padding(.top, 20)
+                    .padding(.top)
                 }
-                .padding(.top)
             }
+            .navigationBarTitle("Metas", displayMode: .inline)
         }
-        .navigationBarTitle("Metas", displayMode: .inline)
+        
     }
 }
 
@@ -115,6 +118,7 @@ struct MetaRowView: View {
                     .foregroundColor(.gray)
                 ProgressView(value: Float(meta.progresso) / 100)
                     .progressViewStyle(LinearProgressViewStyle())
+                    .tint(.black)
                 Text("Progresso atual: \(meta.progresso)%")
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -124,6 +128,7 @@ struct MetaRowView: View {
         .padding()
         .background(Color.gray.opacity(0.1))
         .cornerRadius(10)
+        
     }
 }
 

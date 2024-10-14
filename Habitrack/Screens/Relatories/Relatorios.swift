@@ -68,18 +68,8 @@ struct Relatories: View {
                 }
                 .padding(.top)
             }
-            .navigationTitle("Relatórios")
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Spacer()
-                    Button("Painel") {}
-                    Spacer()
-                    Button("Metas") {}
-                    Spacer()
-                    Button("Hábitos") {}
-                    Spacer()
-                }
-            }
+            .navigationBarTitle("Relatórios", displayMode: .inline)
+
         }
     }
 }
