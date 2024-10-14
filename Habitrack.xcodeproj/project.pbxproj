@@ -24,10 +24,12 @@
 		810E73E12CBD92A4006775E7 /* OptionSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E73E02CBD92A4006775E7 /* OptionSelection.swift */; };
 		81BB8D082CB84B3D00EC6B3D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB8D072CB84B3D00EC6B3D /* Home.swift */; };
 		81BB8D0A2CB859B500EC6B3D /* tabview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB8D092CB859B500EC6B3D /* tabview.swift */; };
+		C5648F792CBD91BC00B9513E /* ThreeOptionsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5648F782CBD91BC00B9513E /* ThreeOptionsSelection.swift */; };
 		C58BCF7B2CB84607009FF8DF /* QuickLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF7A2CB84607009FF8DF /* QuickLinkView.swift */; };
 		C58BCF7E2CB84668009FF8DF /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF7D2CB84668009FF8DF /* HabitCardView.swift */; };
 		C58BCF802CB846C1009FF8DF /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF7F2CB846C1009FF8DF /* SectionTitle.swift */; };
 		C58BCF822CB846DA009FF8DF /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF812CB846DA009FF8DF /* NotificationButton.swift */; };
+		C58BCF842CBD8DE1009FF8DF /* SimpleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF832CBD8DE1009FF8DF /* SimpleInput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,10 +51,12 @@
 		810E73E02CBD92A4006775E7 /* OptionSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OptionSelection.swift; path = Habitrack/Screens/Dashboard/OptionSelection.swift; sourceTree = SOURCE_ROOT; };
 		81BB8D072CB84B3D00EC6B3D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		81BB8D092CB859B500EC6B3D /* tabview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabview.swift; sourceTree = "<group>"; };
+		C5648F782CBD91BC00B9513E /* ThreeOptionsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeOptionsSelection.swift; sourceTree = "<group>"; };
 		C58BCF7A2CB84607009FF8DF /* QuickLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLinkView.swift; sourceTree = "<group>"; };
 		C58BCF7D2CB84668009FF8DF /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
 		C58BCF7F2CB846C1009FF8DF /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
 		C58BCF812CB846DA009FF8DF /* NotificationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButton.swift; sourceTree = "<group>"; };
+		C58BCF832CBD8DE1009FF8DF /* SimpleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,8 @@
 		C58BCF6B2CB842A2009FF8DF /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				C58BCF832CBD8DE1009FF8DF /* SimpleInput.swift */,
+				C5648F782CBD91BC00B9513E /* ThreeOptionsSelection.swift */,
 				810E73E02CBD92A4006775E7 /* OptionSelection.swift */,
 			);
 			path = Widgets;
@@ -324,6 +330,8 @@
 				019B3F722CB6F6AD008699CD /* AddMeta.swift in Sources */,
 				C58BCF7B2CB84607009FF8DF /* QuickLinkView.swift in Sources */,
 				01919FE42CB98CCE00923574 /* ViewModel.swift in Sources */,
+				C58BCF842CBD8DE1009FF8DF /* SimpleInput.swift in Sources */,
+				C5648F792CBD91BC00B9513E /* ThreeOptionsSelection.swift in Sources */,
 				019B3F742CB6F6CC008699CD /* Goals.swift in Sources */,
 				81BB8D082CB84B3D00EC6B3D /* Home.swift in Sources */,
 				019B3F6E2CB6F65D008699CD /* Dashboard.swift in Sources */,
