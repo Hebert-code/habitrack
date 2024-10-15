@@ -8,11 +8,11 @@ struct SimpleInput: View{
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Nome do Hábito")
+            Text("\(title)")
                 .font(.headline)
-            TextField("Insira o nome do hábito", text: $fieldName)
+            TextField("\(placeholder)", text: $fieldName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
+            
         }
     }
 }

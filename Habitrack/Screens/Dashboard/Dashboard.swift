@@ -87,6 +87,7 @@ struct DashboardView: View {
                                         .padding(.horizontal)
                 }
             }
+            .padding(3)
             .navigationBarTitle("Início", displayMode: .inline)
             }
     }
