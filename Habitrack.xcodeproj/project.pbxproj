@@ -26,6 +26,7 @@
 		81BB8D082CB84B3D00EC6B3D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB8D072CB84B3D00EC6B3D /* Home.swift */; };
 		81BB8D0A2CB859B500EC6B3D /* tabview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB8D092CB859B500EC6B3D /* tabview.swift */; };
 		C5648F792CBD91BC00B9513E /* ThreeOptionsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5648F782CBD91BC00B9513E /* ThreeOptionsSelection.swift */; };
+		C5648F7D2CBED8AA00B9513E /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5648F7C2CBED8AA00B9513E /* DefaultButton.swift */; };
 		C58BCF7B2CB84607009FF8DF /* QuickLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF7A2CB84607009FF8DF /* QuickLinkView.swift */; };
 		C58BCF7E2CB84668009FF8DF /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF7D2CB84668009FF8DF /* HabitCardView.swift */; };
 		C58BCF802CB846C1009FF8DF /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF7F2CB846C1009FF8DF /* SectionTitle.swift */; };
@@ -54,6 +55,7 @@
 		81BB8D072CB84B3D00EC6B3D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		81BB8D092CB859B500EC6B3D /* tabview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabview.swift; sourceTree = "<group>"; };
 		C5648F782CBD91BC00B9513E /* ThreeOptionsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeOptionsSelection.swift; sourceTree = "<group>"; };
+		C5648F7C2CBED8AA00B9513E /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		C58BCF7A2CB84607009FF8DF /* QuickLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLinkView.swift; sourceTree = "<group>"; };
 		C58BCF7D2CB84668009FF8DF /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
 		C58BCF7F2CB846C1009FF8DF /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				C58BCF832CBD8DE1009FF8DF /* SimpleInput.swift */,
 				C5648F782CBD91BC00B9513E /* ThreeOptionsSelection.swift */,
 				810E73E02CBD92A4006775E7 /* OptionSelection.swift */,
+				C5648F7C2CBED8AA00B9513E /* DefaultButton.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				C58BCF802CB846C1009FF8DF /* SectionTitle.swift in Sources */,
 				810E73E12CBD92A4006775E7 /* OptionSelection.swift in Sources */,
 				019B3F702CB6F695008699CD /* NewHabit.swift in Sources */,
+				C5648F7D2CBED8AA00B9513E /* DefaultButton.swift in Sources */,
 				019B3F7E2CB6F76F008699CD /* Monitoring.swift in Sources */,
 				019B3F762CB6F6E0008699CD /* Habits.swift in Sources */,
 				019B3F722CB6F6AD008699CD /* AddMeta.swift in Sources */,
