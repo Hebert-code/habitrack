@@ -1,98 +1,85 @@
 import SwiftUI
 
 struct NewHabitView: View {
-    @StateObject private var viewModel = HabitListViewModel()
-    @State private var nomeHabito: String = ""
-    @State private var descricaoHabito: String = ""
-    @State private var frequencia: String = "Diário"
+    @StateObject var controllerHabit = HabitListViewModel()
+    @StateObject var controllerGoal = GoalListViewModel()
+    
+    @State private var nomeHabito = ""
+    @State private var descricaoHabito = ""
+    @State private var frequencia = "Diário"
     @State private var dataInicio = Date()
-    @State private var metaSelecionada: String = "Meta 1"
-    @State private var habilitarLembretes: Bool = false
-    @State private var frequenciaLembrete: String = "Diário"
-
+    @State private var goalSelected: String = "Selecione"
+    @State private var habilitarLembretes = false
+    @State private var frequenciaLembrete = "Diário"
+    
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Nome do Hábito")) {
-                    TextField("Insira o nome do hábito", text: $nomeHabito)
-                }
-
-                Section(header: Text("Descrição")) {
-                    TextField("Descreva seu hábito", text: $descricaoHabito)
-                }
-
-                Section(header: Text("Frequência")) {
-                    Picker("Frequência", selection: $frequencia) {
-                        ForEach(viewModel.frequencias, id: \.self) { freq in
-                            Text(freq)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal)
-                }
-
-                DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
-
-                Section(header: Text("Meta Correspondente")) {
-                    Picker("Meta", selection: $metaSelecionada) {
-                        ForEach(viewModel.metas, id: \.self) { meta in
-                            Text(meta)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal)
-                }
-
-                Section(header: Text("Configurações de Lembrete")) {
-                    Toggle(isOn: $habilitarLembretes) {
-                        Text("Habilitar lembretes")
-                    }
-                    .padding(.horizontal)
-                    
-                    if habilitarLembretes {
-                        Picker("Frequência", selection: $frequenciaLembrete) {
-                            ForEach(viewModel.frequenciasLembrete, id: \.self) { freq in
-                                Text(freq)
-                            }
-                        }
-                        .padding(.horizontal)
-                    }
-                }
-
-                Button(action: {
-                    enviarHabit()
-                }) {
-                    Text("Salvar Hábito")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }
-                .padding(.top)
+        Form {
+            TextField("Nome do Hábito", text: $nomeHabito)
+            TextField("Descrição", text: $descricaoHabito)
+            
+            Picker("Frequência", selection: $frequencia) {
+                ForEach(["Diário", "Semanal", "Mensal"], id: \.self) { Text($0) }
             }
-            .navigationTitle("Novo Hábito")
+            
+            DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
+            
+            Picker("Teste", selection: $frequencia) {
+                Text("Selecione")
+                ForEach(controllerGoal.goals, id: \._id) {
+                    Text($0.nomeGoal)
+                }
+            }
+            
+            Picker("Goal ", selection: $goalSelected) {
+                
+                Text("Selecione")
+                
+                
+                
+                
+                // Just here for demonstration
+            
+                
+            }
+            
+            //            VStack {
+            //                ForEach(controllerGoal.goals, id: \.id) { goal in
+            //                    print("Uma meta")
+            //                    print(goal)
+            //                    return Text(goal.nomeGoal).tag(goal.id as UUID?)
+            //                }
+            //            }
+            
+            
+            Toggle("Habilitar Lembretes", isOn: $habilitarLembretes)
+            if habilitarLembretes {
+                Picker("Frequência do Lembrete", selection: $frequenciaLembrete) {
+                    ForEach(["Diário", "Semanal", "Mensal"], id: \.self) { Text($0) }
+                }
+            }
+            
+            Button("Salvar Hábito") {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                controllerHabit.insertHabit(
+                    nomeHabito: nomeHabito,
+                    descricaoHabito: descricaoHabito,
+                    frequencia: frequencia,
+                    dataInicio: formatter.string(from: dataInicio),
+                    goalID: nil,
+                    habilitarLembretes: habilitarLembretes,
+                    frequenciaLembrete: frequenciaLembrete,
+                    type: "habit"
+                )
+            }
         }
-        .navigationBarTitle("Novo Hábito", displayMode: .inline)
-    }
-
-    func salvarHabito() {
-        // Lógica para salvar o hábito
-        print("Hábito salvo!")
-    }
-
-    private func enviarHabit() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let formattedDate = formatter.string(from: dataInicio)
-        
-        viewModel.insertHabit(
-            nomeHabito: nomeHabito,
-            descricaoHabito: descricaoHabito,
-            frequencia: frequencia,
-            dataInicio: formattedDate,
-            metaSelecionada: metaSelecionada,
-            habilitarLembretes: habilitarLembretes,
-            frequenciaLembrete: frequenciaLembrete
-        )
+        .onAppear(){
+            controllerGoal.fetchGoals()
+        }
+        .navigationTitle("Adicionar Hábito")
     }
 }
+
 
 #Preview {
     NewHabitView()
