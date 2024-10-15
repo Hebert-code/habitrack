@@ -28,7 +28,7 @@ struct NewHabitView: View {
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                }
+                    .padding(.horizontal)
 
                 DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
 
@@ -39,12 +39,13 @@ struct NewHabitView: View {
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                }
+                    .padding(.horizontal)
 
                 Section(header: Text("Configurações de Lembrete")) {
                     Toggle(isOn: $habilitarLembretes) {
                         Text("Habilitar lembretes")
                     }
+                    .padding(.horizontal)
 
                     if habilitarLembretes {
                         Picker("Frequência", selection: $frequenciaLembrete) {
@@ -52,8 +53,8 @@ struct NewHabitView: View {
                                 Text(freq)
                             }
                         }
+                        .padding(.horizontal)
                     }
-                }
 
                 Button(action: {
                     enviarHabit()
@@ -61,13 +62,16 @@ struct NewHabitView: View {
                     Text("Salvar Hábito")
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
-                .foregroundColor(.white)
-                .padding()
-                .background(Color.black)
-                .cornerRadius(8)
+                .padding(.top)
             }
             .navigationTitle("Novo Hábito")
         }
+        .navigationBarTitle("Novo Hábito", displayMode: .inline)
+    }
+
+    func salvarHabito() {
+        // Lógica para salvar o hábito
+        print("Hábito salvo!")
     }
 
     private func enviarHabit() {

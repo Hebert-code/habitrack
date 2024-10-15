@@ -14,7 +14,7 @@ struct AddMeta: View {
     @State private var dataInicio = Date()
     @State private var dataTermino = Date()
 
-    let categorias = ["Saúde", "Carreira", "Educação"]
+    @State var categorias = ["Saúde", "Carreira", "Educação"];
 
     var body: some View {
         NavigationView {
@@ -30,29 +30,16 @@ struct AddMeta: View {
                     TextField("Descreva sua meta com mais detalhes", text: $descricao)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                    Text("Categoria")
-                        .font(.headline)
-                    HStack {
-                        ForEach(categorias, id: \.self) { categoria in
-                            Button(action: {
-                                categoriaSelecionada = categoria
-                            }) {
-                                Text(categoria)
-                                    .padding()
-                                    .background(categoriaSelecionada == categoria ? Color.gray.opacity(0.2) : Color.clear)
-                                    .cornerRadius(8)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(categoriaSelecionada == categoria ? Color.blue : Color.gray, lineWidth: 1)
-                                    )
-                            }
-                        }
-                    }
-
+                    OptionSelection(
+                        title: "Categorias",
+                        categoriaSelecionada: $categoriaSelecionada,
+                        categorias: $categorias);
+                    
                     Text("Data de início")
                         .font(.headline)
                     DatePicker("", selection: $dataInicio, displayedComponents: .date)
                         .labelsHidden()
+                        .background(Color.white.opacity(0.2))
 
                     Text("Data de término")
                         .font(.headline)
@@ -73,19 +60,7 @@ struct AddMeta: View {
                 .padding()
             }
             .navigationTitle("Novo Meta")
-            .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    HStack {
-                        Spacer()
-                        Button("Painel") {}
-                        Spacer()
-                        Button("Hábitos") {}
-                        Spacer()
-                        Button("Acompanhamento") {}
-                        Spacer()
-                    }
-                }
-            }
+
         }
     }
     func enviarMetaParaAPI() {

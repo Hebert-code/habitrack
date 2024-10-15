@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MainView: View {
+struct DashboardView: View {
     var body: some View {
         NavigationView {
             ScrollView {
@@ -8,11 +8,13 @@ struct MainView: View {
                     // Links Rápidos
                     Text("Links rápidos")
                         .font(.headline)
+                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                     
                     HStack {
                         QuickLinkView(title: "Relatórios", imageName: "chart.bar")
                         QuickLinkView(title: "Recomendações", imageName: "pencil")
                     }
+                    .frame(alignment: .center)
                     .padding(.horizontal)
                     
                     // Objetivos em Progresso Button
@@ -69,27 +71,24 @@ struct MainView: View {
                     .padding()
                     
                     VStack(spacing: 16) {
-                        NotificationButton(title: "Dicas e Motivação")
-                        NotificationButton(title: "Relatórios")
-                        NotificationButton(title: "Conquistas")
-                        NotificationButton(title: "Histórico")
-                    }
-                    .padding(.horizontal)
+                                            NavigationLink(destination: Recomendations()) {
+                                                NotificationButton(title: "Dicas e Motivação")
+                                            }
+                                            NavigationLink(destination: Relatories() ) {
+                                                NotificationButton(title: "Relatórios")
+                                            }
+                                            NavigationLink(destination: Goals()) {
+                                                NotificationButton(title: "Conquistas")
+                                            }
+                                            NavigationLink(destination: Archievements()) {
+                                                NotificationButton(title: "Histórico")
+                                            }
+                                        }
+                                        .padding(.horizontal)
                 }
             }
-            .navigationTitle("Início")
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Spacer()
-                    Button("Hábitos") {}
-                    Spacer()
-                    Button("Metas") {}
-                    Spacer()
-                    Button("Acompanhamento") {}
-                    Spacer()
-                }
+            .navigationBarTitle("Início", displayMode: .inline)
             }
-        }
     }
 }
 

@@ -5,7 +5,6 @@
 //  Created by Turma01-14 on 09/10/24.
 //
 
-
 import SwiftUI
 
 struct Habits: View {
@@ -17,42 +16,20 @@ struct Habits: View {
     
     var body: some View {
         NavigationView {
-            TabView {
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("Visão geral do hábito")
-                        .font(.title2)
-                        .padding(.top, 20)
-                    
-                    HStack {
-                        VStack {
-                            Text("Total de Metas")
-                                .font(.subheadline)
-                            Text("\(habitos.count)")
-                                .font(.title)
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        VStack {
-                            Text("Concluídas")
-                                .font(.subheadline)
-                            Text("\(habitos.filter { $0.2 == 1.0 }.count)")
-                                .font(.title)
-                        }
-                        .frame(maxWidth: .infinity)
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Visão geral do hábito")
+                    .font(.title2)
+                    .padding(.top, 20)
+                
+                HStack {
+                    VStack {
+                        Text("Total de Habitos")
+                            .font(.subheadline)
+                        Text("\(habitos.count)")
+                            .font(.title)
                     }
-                    .padding()
-                    .background(Color(UIColor.systemGray6))
-                    .cornerRadius(10)
-                    
-                    Text("Lista de hábitos")
-                        .font(.headline)
-                    
-                    VStack(spacing: 10) {
-                        ForEach(habitos, id: \.0) { habito in
-                            HabitoItem(nome: habito.0, duracao: habito.1, progresso: habito.2)
-                        }
-                    }
-                    
+                    .frame(maxWidth: .infinity)
+                   
                     Spacer()
                     
                     NavigationLink(destination: NewHabitView()) {
@@ -62,29 +39,42 @@ struct Habits: View {
                             .foregroundColor(.white)
                             .background(Color.black)
                             .cornerRadius(10)
+                    VStack {
+                        Text("Concluídas")
+                            .font(.subheadline)
+                        Text("\(habitos.filter { $0.2 == 1.0 }.count)")
+                            .font(.title)
                     }
-                    .padding(.bottom, 20)
+                    .frame(maxWidth: .infinity)
                 }
                 .padding()
-                .background(Color.white)
-                .tabItem {
-                    Image(systemName: "list.bullet")
-                    Text("Painel")
+                .background(Color(UIColor.systemGray6))
+                .cornerRadius(10)
+                
+                Text("Lista de hábitos")
+                    .font(.headline)
+                
+                VStack(spacing: 10) {
+                    ForEach(habitos, id: \.0) { habito in
+                        HabitoItem(nome: habito.0, duracao: habito.1, progresso: habito.2)
+                    }
                 }
                 
-                Text("Metas")
-                    .tabItem {
-                        Image(systemName: "trophy")
-                        Text("Metas")
-                    }
+                Spacer()
                 
-                Text("Acompanhamento")
-                    .tabItem {
-                        Image(systemName: "chart.bar")
-                        Text("Acompanhamento")
-                    }
+                NavigationLink(destination: AddHabitoView(habitos: $habitos)) {
+                    Text("Adicionar Hábito")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, maxHeight: 44)
+                        .foregroundColor(.white)
+                        .background(Color.black)
+                        .cornerRadius(10)
+                }
+                .padding(.bottom, 20)
             }
-            .navigationTitle("Hábitos")
+            .padding()
+            .background(Color.white)
+            .navigationBarTitle("Hábitos", displayMode: .inline)
         }
     }
 }
@@ -151,7 +141,6 @@ struct HabitoItem: View {
         }
     }
 }
-
 
 #Preview {
     Habits()
