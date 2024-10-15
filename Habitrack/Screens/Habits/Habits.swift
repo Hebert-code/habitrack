@@ -39,6 +39,7 @@ struct Habits: View {
                             .foregroundColor(.white)
                             .background(Color.black)
                             .cornerRadius(10)
+                    }
                     VStack {
                         Text("Concluídas")
                             .font(.subheadline)

@@ -29,6 +29,7 @@ struct NewHabitView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal)
+                }
 
                 DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
 
@@ -40,13 +41,14 @@ struct NewHabitView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal)
+                }
 
                 Section(header: Text("Configurações de Lembrete")) {
                     Toggle(isOn: $habilitarLembretes) {
                         Text("Habilitar lembretes")
                     }
                     .padding(.horizontal)
-
+                    
                     if habilitarLembretes {
                         Picker("Frequência", selection: $frequenciaLembrete) {
                             ForEach(viewModel.frequenciasLembrete, id: \.self) { freq in
@@ -55,6 +57,7 @@ struct NewHabitView: View {
                         }
                         .padding(.horizontal)
                     }
+                }
 
                 Button(action: {
                     enviarHabit()
