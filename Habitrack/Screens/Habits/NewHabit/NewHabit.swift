@@ -30,9 +30,9 @@ struct NewHabitView: View {
                 }
             }
             
-            Picker("Goal ", selection: $goalSelected) {
+            //Picker("Goal ", selection: $goalSelected) {
                 
-                Text("Selecione")
+            //    Text("Selecione")
                 
                 
                 
@@ -40,7 +40,7 @@ struct NewHabitView: View {
                 // Just here for demonstration
             
                 
-            }
+            //}
             
             //            VStack {
             //                ForEach(controllerGoal.goals, id: \.id) { goal in
