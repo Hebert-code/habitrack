@@ -1,94 +1,70 @@
 import SwiftUI
 
-struct NewHabit: View {
+struct NewHabitView: View {
+    @StateObject private var viewModel = HabitListViewModel()
     @State private var nomeHabito: String = ""
     @State private var descricaoHabito: String = ""
     @State private var frequencia: String = "Diário"
-    @State private var dataInicio: Date = Date()
+    @State private var dataInicio = Date()
     @State private var metaSelecionada: String = "Meta 1"
     @State private var habilitarLembretes: Bool = false
-    @State private var frequenciaLembrete: String = ""
-
-    var frequencias = ["Diário", "Semanal", "Mensal"]
-    var metas = ["Meta 1", "Meta 2", "Meta 3"]
-    var frequenciasLembrete = ["Diário", "Semanal", "Mensal"]
+    @State private var frequenciaLembrete: String = "Diário"
 
     var body: some View {
-        VStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    // Campo Nome do Hábito
-                    SimpleInput(
-                        title: "Nome do Hábito",
-                        placeholder: "Insira o nome do Hábito",
-                        fieldName: $nomeHabito)
+        NavigationView {
+            Form {
+                Section(header: Text("Nome do Hábito")) {
+                    TextField("Insira o nome do hábito", text: $nomeHabito)
+                }
 
-                    // Campo Descrição
-                    SimpleInput(
-                        title: "Descrição",
-                        placeholder: "Descreva seu hábito",
-                        fieldName: $descricaoHabito)
+                Section(header: Text("Descrição")) {
+                    TextField("Descreva seu hábito", text: $descricaoHabito)
+                }
 
-                    // Frequência (Segmented Picker)
-                    Text("Frequência")
-                        .font(.headline)
+                Section(header: Text("Frequência")) {
                     Picker("Frequência", selection: $frequencia) {
-                        ForEach(frequencias, id: \.self) { freq in
+                        ForEach(viewModel.frequencias, id: \.self) { freq in
                             Text(freq)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal)
 
-                    // Data de Início
-                    Text("Data de Início")
-                        .font(.headline)
-                    DatePicker("Selecione a data de início", selection: $dataInicio, displayedComponents: .date)
-                        .padding(.horizontal)
+                DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
 
-                    // Meta Correspondente (Segmented Picker)
-                    Text("Meta Correspondente")
-                        .font(.headline)
+                Section(header: Text("Meta Correspondente")) {
                     Picker("Meta", selection: $metaSelecionada) {
-                        ForEach(metas, id: \.self) { meta in
+                        ForEach(viewModel.metas, id: \.self) { meta in
                             Text(meta)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal)
 
-                    // Configurações de Lembrete
-                    Text("Configurações de Lembrete")
-                        .font(.headline)
-                        .padding(.horizontal)
-
+                Section(header: Text("Configurações de Lembrete")) {
                     Toggle(isOn: $habilitarLembretes) {
                         Text("Habilitar lembretes")
                     }
                     .padding(.horizontal)
 
                     if habilitarLembretes {
-                        Picker("Frequência do Lembrete", selection: $frequenciaLembrete) {
-                            ForEach(frequenciasLembrete, id: \.self) { freq in
+                        Picker("Frequência", selection: $frequenciaLembrete) {
+                            ForEach(viewModel.frequenciasLembrete, id: \.self) { freq in
                                 Text(freq)
                             }
                         }
                         .padding(.horizontal)
                     }
 
-                    // Botão Salvar Hábito
-                    Button(action: salvarHabito) {
-                        Text("Salvar Hábito")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                    .padding(.horizontal)
+                Button(action: {
+                    enviarHabit()
+                }) {
+                    Text("Salvar Hábito")
+                        .frame(maxWidth: .infinity, alignment: .center)
                 }
                 .padding(.top)
             }
+            .navigationTitle("Novo Hábito")
         }
         .navigationBarTitle("Novo Hábito", displayMode: .inline)
     }
@@ -97,8 +73,24 @@ struct NewHabit: View {
         // Lógica para salvar o hábito
         print("Hábito salvo!")
     }
+
+    private func enviarHabit() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let formattedDate = formatter.string(from: dataInicio)
+        
+        viewModel.insertHabit(
+            nomeHabito: nomeHabito,
+            descricaoHabito: descricaoHabito,
+            frequencia: frequencia,
+            dataInicio: formattedDate,
+            metaSelecionada: metaSelecionada,
+            habilitarLembretes: habilitarLembretes,
+            frequenciaLembrete: frequenciaLembrete
+        )
+    }
 }
 
 #Preview {
-    NewHabit()
+    NewHabitView()
 }

@@ -29,7 +29,16 @@ struct Habits: View {
                             .font(.title)
                     }
                     .frame(maxWidth: .infinity)
+                   
+                    Spacer()
                     
+                    NavigationLink(destination: NewHabitView()) {
+                        Text("Adicionar Hábito")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, maxHeight: 44)
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                            .cornerRadius(10)
                     VStack {
                         Text("Concluídas")
                             .font(.subheadline)

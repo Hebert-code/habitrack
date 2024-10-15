@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		01919FE42CB98CCE00923574 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01919FE32CB98CCE00923574 /* ViewModel.swift */; };
 		01919FE62CB98CF300923574 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01919FE52CB98CF300923574 /* Model.swift */; };
+		01919FE82CBD8D6A00923574 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01919FE72CBD8D6A00923574 /* Webservice.swift */; };
 		019B3F5E2CB6F307008699CD /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B3F5D2CB6F307008699CD /* Main.swift */; };
 		019B3F622CB6F30B008699CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019B3F612CB6F30B008699CD /* Assets.xcassets */; };
 		019B3F652CB6F30B008699CD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019B3F642CB6F30B008699CD /* Preview Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		01919FE32CB98CCE00923574 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModel.swift; path = Habitrack/ViewModels/ViewModel.swift; sourceTree = SOURCE_ROOT; };
 		01919FE52CB98CF300923574 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = SOURCE_ROOT; };
+		01919FE72CBD8D6A00923574 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		019B3F5A2CB6F307008699CD /* Habitrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Habitrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		019B3F5D2CB6F307008699CD /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		019B3F612CB6F30B008699CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				01919FE32CB98CCE00923574 /* ViewModel.swift */,
+				01919FE72CBD8D6A00923574 /* Webservice.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				C58BCF842CBD8DE1009FF8DF /* SimpleInput.swift in Sources */,
 				C5648F792CBD91BC00B9513E /* ThreeOptionsSelection.swift in Sources */,
 				019B3F742CB6F6CC008699CD /* Goals.swift in Sources */,
+				01919FE82CBD8D6A00923574 /* Webservice.swift in Sources */,
 				81BB8D082CB84B3D00EC6B3D /* Home.swift in Sources */,
 				019B3F6E2CB6F65D008699CD /* Dashboard.swift in Sources */,
 				01919FE62CB98CF300923574 /* Model.swift in Sources */,
