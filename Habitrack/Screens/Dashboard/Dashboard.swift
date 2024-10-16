@@ -1,13 +1,6 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @State private var metas: [Meta] = [
-        Meta(nome: "Exercício diário", categoria: "Fitness", progresso: 70, icone: "figure.walk"),
-        Meta(nome: "Leia 20 páginas", categoria: "Educação", progresso: 50, icone: "book.closed"),
-        Meta(nome: "Meditação", categoria: "Saúde", progresso: 80, icone: "person.crop.circle"),
-        Meta(nome: "Correr", categoria: "Fitness", progresso: 30, icone: "figure.run")
-    ]
-
     
     var body: some View {
         NavigationView {
@@ -41,15 +34,7 @@ struct DashboardView: View {
               
                     SectionTitle(title: "Metas em andamento")
                     
-                   ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 16) {
-                            ForEach(metas, id: \.nome) { meta in
-                                HabitCardView(imageName: meta.icone, title: meta.nome, progress:
-                    meta.progresso, status: "\(100 - meta.progresso)% restante")
-                            }
-                        }
-                    .padding(.horizontal)
-                   }
+
                     
                     // Notificações
                     Text("Notificações")
