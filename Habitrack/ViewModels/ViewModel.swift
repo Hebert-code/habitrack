@@ -34,8 +34,8 @@ final class HabitListViewModel: ObservableObject {
     }
 
     // Insert a new habit
-    func insertHabit(nomeHabito: String, descricaoHabito: String, frequencia: String, dataInicio: String, metaSelecionada: String, habilitarLembretes: Bool, frequenciaLembrete: String) {
-        let newHabit = Habit(nomeHabito: nomeHabito, descricaoHabito: descricaoHabito, frequencia: frequencia, dataInicio: dataInicio, metaSelecionada: metaSelecionada, habilitarLembretes: habilitarLembretes, frequenciaLembrete: frequenciaLembrete)
+    func insertHabit(nomeHabito: String, descricaoHabito: String, frequencia: String, dataInicio: String, metaSelecionada: String, habilitarLembretes: Bool, frequenciaLembrete: String, type: String) {
+        let newHabit = Habit(nomeHabito: nomeHabito, descricaoHabito: descricaoHabito, frequencia: frequencia, dataInicio: dataInicio, metaSelecionada: metaSelecionada, habilitarLembretes: habilitarLembretes, frequenciaLembrete: frequenciaLembrete, type: type)
         
         webService.insertHabit(habit: newHabit) { [weak self] in
             self?.fetchHabits()
@@ -44,7 +44,7 @@ final class HabitListViewModel: ObservableObject {
 
     // Update an existing habit
     func updateHabit(habit: Habit, newNomeHabito: String) {
-        let updatedHabit = Habit(id: habit.id, nomeHabito: newNomeHabito, descricaoHabito: habit.descricaoHabito, frequencia: habit.frequencia, dataInicio: habit.dataInicio, metaSelecionada: habit.metaSelecionada, habilitarLembretes: habit.habilitarLembretes, frequenciaLembrete: habit.frequenciaLembrete)
+        let updatedHabit = Habit(id: habit.id, nomeHabito: newNomeHabito, descricaoHabito: habit.descricaoHabito, frequencia: habit.frequencia, dataInicio: habit.dataInicio, metaSelecionada: habit.metaSelecionada, habilitarLembretes: habit.habilitarLembretes, frequenciaLembrete: habit.frequenciaLembrete, type: habit.type)
         
         webService.updateHabit(habit: updatedHabit) { [weak self] in
             self?.fetchHabits()

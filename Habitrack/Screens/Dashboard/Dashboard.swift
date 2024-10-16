@@ -4,29 +4,17 @@ struct DashboardView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    // Links Rápidos
-                    Text("Links rápidos")
-                        .font(.headline)
-                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+                VStack(alignment: .center, spacing: 20) {
                     
                     HStack {
                         QuickLinkView(title: "Relatórios", imageName: "chart.bar")
                         QuickLinkView(title: "Recomendações", imageName: "pencil")
                     }
-                    .frame(alignment: .center)
-                    .padding(.horizontal)
+                    .frame(width: .infinity, alignment: .center)
+                    .padding()
                     
                     // Objetivos em Progresso Button
-                    Button(action: {}) {
-                        Text("Objetivos em Progresso")
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.black)
-                            .cornerRadius(8)
-                    }
-                    .padding(.horizontal)
+                    DefaultButton(callback: {}, title: "Objetivos em Progresso")
                     
                     // Hábitos em andamento
                     SectionTitle(title: "Hábitos em andamento")

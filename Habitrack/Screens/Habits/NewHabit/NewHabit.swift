@@ -59,22 +59,13 @@ struct NewHabitView: View {
                     }
                 }
 
-                Button(action: {
+                DefaultButton(callback: {
                     enviarHabit()
-                }) {
-                    Text("Salvar Hábito")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }
-                .padding(.top)
+                }, title: "Salvar Hábito");
             }
             .navigationTitle("Novo Hábito")
         }
         .navigationBarTitle("Novo Hábito", displayMode: .inline)
-    }
-
-    func salvarHabito() {
-        // Lógica para salvar o hábito
-        print("Hábito salvo!")
     }
 
     private func enviarHabit() {
@@ -89,7 +80,8 @@ struct NewHabitView: View {
             dataInicio: formattedDate,
             metaSelecionada: metaSelecionada,
             habilitarLembretes: habilitarLembretes,
-            frequenciaLembrete: frequenciaLembrete
+            frequenciaLembrete: frequenciaLembrete,
+            type: "habit"
         )
     }
 }

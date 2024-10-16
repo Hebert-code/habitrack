@@ -9,4 +9,5 @@ struct Habit: Codable, Hashable, Identifiable {
     var metaSelecionada: String
     var habilitarLembretes: Bool
     var frequenciaLembrete: String
+    var type: String
 }
