@@ -34,7 +34,7 @@ struct MainView: View {
             
             Achievements()
                 .tabItem {
-                    Label("Acompanhamento", systemImage: "chart.bar.fill")
+                    Label("Historico", systemImage: "chart.bar.fill")
                 }
         }
     }

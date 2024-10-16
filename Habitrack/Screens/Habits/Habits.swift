@@ -43,7 +43,7 @@ struct Habits: View {
                         }
                         .frame(maxWidth: .infinity)
                     }
-                    .padding()
+                    .padding(/*@START_MENU_TOKEN@*/EdgeInsets()/*@END_MENU_TOKEN@*/)
                     .background(Color(UIColor.systemGray6))
                     .cornerRadius(10)
                     
@@ -54,8 +54,11 @@ struct Habits: View {
                     VStack(spacing: 10) {
                         
                         ForEach(controllerHabit.habits, id: \._id) { habit in
-                            HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
+                            NavigationLink(destination: HabitDetailView(habit: habit)) {
+                                   HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
+                               }
                         }
+                        .foregroundColor(.black)
                     }
                     .padding()
                     
