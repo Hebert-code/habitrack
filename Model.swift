@@ -10,6 +10,8 @@ struct Goal: Codable, Identifiable, Hashable {
     var dataInicio: String
     var dataTermino: String
     var type: String
+    var icone: String
+    var progresso: Int
 }
 
 struct Habit: Codable, Identifiable {
@@ -20,7 +22,7 @@ struct Habit: Codable, Identifiable {
     var descricaoHabito: String
     var frequencia: String
     var dataInicio: String
-    var goalID: UUID? // Identificador do goal associado
+    var goalID: UUID?
     var habilitarLembretes: Bool
     var frequenciaLembrete: String?
     var type: String
