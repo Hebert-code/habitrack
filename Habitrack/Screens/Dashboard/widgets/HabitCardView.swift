@@ -12,7 +12,7 @@ struct HabitCardView: View {
                 Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 150, height: 100)
+                    .frame(width: 150, height: 150)
                     .cornerRadius(8)
                 
                 Text(status)
