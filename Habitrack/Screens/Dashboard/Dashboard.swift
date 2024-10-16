@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct DashboardView: View {
+    @StateObject var controllerHabit = HabitListViewModel()
+    @StateObject var controllerGoal = GoalListViewModel()
     
     var body: some View {
         NavigationView {
@@ -26,19 +28,38 @@ struct DashboardView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
-                            HabitCardView(imageName: "person.running", title: "Objetivo do exercício", progress: 50, status: "Restam 5 dias")
-                            HabitCardView(imageName: "book", title: "Hábito de leitura", progress: 80, status: "No caminho certo")
+                            ForEach(controllerGoal.goals, id: \._id) {
+                                goal in
+                                HabitCardView(
+                                    imageName: "default",
+                                    title: goal.nomeGoal == "" ? "sem nome" : goal.nomeGoal,
+                                    progress: 50,
+                                    status: "Restam 5 dias")
+                            }
                         }
                         .padding(.horizontal)
                     }
               
                     SectionTitle(title: "Metas em andamento")
                     
-
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 16) {
+                            ForEach(controllerHabit.habits, id: \._id) {
+                                habit in
+                                HabitCardView(
+                                    imageName: "default",
+                                    title: habit.nomeHabito == "" ? "sem nome" : habit.nomeHabito,
+                                    progress: 50,
+                                    status: "Restam 5 dias")
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
                     
                     // Notificações
                     Text("Notificações")
-                        .font(.headline)
+                        .font(.system(size: 20))
+                        .fontWeight(.bold)
                         .padding(.horizontal)
                     
                     HStack {
@@ -54,7 +75,6 @@ struct DashboardView: View {
                                 .foregroundColor(.gray)
                         }
                     }
-                    .padding()
                     
                     VStack(spacing: 16) {
                         NavigationLink(destination: Recomendations()) {
@@ -75,6 +95,10 @@ struct DashboardView: View {
             }
             .padding(3)
             .navigationBarTitle("Início", displayMode: .inline)
+        }
+        .onAppear() {
+            controllerGoal.fetchGoals();
+            controllerHabit.fetchHabits();
         }
     }
 }
