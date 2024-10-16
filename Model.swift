@@ -10,8 +10,6 @@ struct Goal: Codable, Identifiable, Hashable {
     var dataInicio: String
     var dataTermino: String
     var type: String
-    var icone: String
-    var progresso: Int
 }
 
 struct Habit: Codable, Identifiable {
