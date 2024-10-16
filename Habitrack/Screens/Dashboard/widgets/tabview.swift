@@ -32,9 +32,9 @@ struct MainView: View {
                     Label("Metas", systemImage: "trophy.fill")
                 }
             
-            Achievements()
+            Monitoring()
                 .tabItem {
-                    Label("Historico", systemImage: "chart.bar.fill")
+                    Label("Acompanhamento", systemImage: "chart.bar.fill")
                 }
         }
     }
