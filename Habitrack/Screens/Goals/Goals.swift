@@ -9,6 +9,11 @@ import SwiftUI
 
 
 struct Goals: View {
+    
+    @StateObject var controllerHabit = HabitListViewModel()
+    @StateObject var controllerGoal = GoalListViewModel()
+    
+    
     @State private var totalMetas: Int = 5
     @State private var metasConcluidas: Int = 3
     @State private var metas: [Meta] = [

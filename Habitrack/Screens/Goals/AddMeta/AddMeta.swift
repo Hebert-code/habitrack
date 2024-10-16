@@ -7,6 +7,8 @@ struct AddGoalView: View {
     @State private var categoria = "Saúde"
     @State private var dataInicio = Date()
     @State private var dataTermino = Date()
+    @State private var icone: String = ""
+    @State private var progresso: Int = 0
 
     var body: some View {
         Form {
@@ -29,7 +31,10 @@ struct AddGoalView: View {
                     categoria: categoria,
                     dataInicio: formatter.string(from: dataInicio),
                     dataTermino: formatter.string(from: dataTermino),
-                    type: "goal"
+                    type: "goal",
+                    progresso: progresso,
+                    icone: icone
+                    
                 )
             }
         }

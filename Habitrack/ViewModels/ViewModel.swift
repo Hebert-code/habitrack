@@ -24,12 +24,14 @@ final class GoalListViewModel: ObservableObject {
         }
     }
 
-    func insertGoal(nomeGoal: String, descricao: String, categoria: String, dataInicio: String, dataTermino: String, type: String) {
-        let newGoal = Goal(nomeGoal: nomeGoal, descricao: descricao, categoria: categoria, dataInicio: dataInicio, dataTermino: dataTermino, type: type)
+    func insertGoal(nomeGoal: String, descricao: String, categoria: String, dataInicio: String, dataTermino: String, type: String, progresso: Int, icone: String) {
+        let newGoal = Goal(nomeGoal: nomeGoal, descricao: descricao, categoria: categoria, dataInicio: dataInicio, dataTermino: dataTermino, type: type, icone: icone, progresso: progresso)
         webService.insertGoal(goal: newGoal) { [weak self] in
             self?.fetchGoals()
         }
     }
+    
+
 }
 
 final class HabitListViewModel: ObservableObject {
