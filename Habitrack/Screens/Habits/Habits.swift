@@ -20,65 +20,66 @@ struct Habits: View {
     var body: some View {
         NavigationView {
             ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Visão geral do hábito")
-                    .font(.title2)
-                    .padding(.top, 20)
                 
-                HStack {
-                    VStack {
-                        Text("Total de Habitos")
-                            .font(.subheadline)
-                        Text("\(controllerHabit.habits.count)")
-                            .font(.title)
+                VStack(alignment: .leading, spacing: 30) {
+                    
+                    
+                    HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
+                        VStack {
+                            Text("Total de Habitos")
+                                .font(.subheadline)
+                            Text("\(controllerHabit.habits.count)")
+                                .font(.title)
+                        }
+                        .frame(maxWidth: .infinity)
+                        
+                        Spacer()
+                        
+                        VStack {
+                            Text("Concluídas")
+                                .font(.subheadline)
+                            Text("\(habitos.filter { $0.2 == 1.0 }.count)")
+                                .font(.title)
+                        }
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color(UIColor.systemGray6))
+                    .cornerRadius(10)
+                    
+                    Text("Lista de hábitos")
+                        .font(.headline)
+                        .padding(.horizontal)
+                    
+                    VStack(spacing: 10) {
+                        
+                        ForEach(controllerHabit.habits, id: \._id) { habit in
+                            HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
+                        }
+                    }
+                    .padding()
                     
                     Spacer()
                     
-                    VStack {
-                        Text("Concluídas")
-                            .font(.subheadline)
-                        Text("\(habitos.filter { $0.2 == 1.0 }.count)")
-                            .font(.title)
+                    NavigationLink(destination: NewHabitView()) {
+                        Text("Adicionar Hábito")
+                            .font(.headline)
+                        //.frame(width: 20, height: 20)
+                            .frame(width: 350, height: 50)
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                            .cornerRadius(15)
+                            .padding(.horizontal)
                     }
-                    .frame(maxWidth: .infinity)
+                    // .padding(.bottom, 20)
                 }
-                .padding()
-                .background(Color(UIColor.systemGray6))
-                .cornerRadius(10)
-                
-                Text("Lista de hábitos")
-                    .font(.headline)
-                
-                VStack(spacing: 10) {
-                    
-                    ForEach(controllerHabit.habits, id: \._id) { habit in
-                        HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
-                                            }
-                                        }
-                
-                Spacer()
-                
-                NavigationLink(destination: NewHabitView()) {
-                    Text("Adicionar Hábito")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity, maxHeight: 44)
-                        .foregroundColor(.white)
-                        .background(Color.black)
-                        .cornerRadius(10)
-                }
-               // .padding(.bottom, 20)
+                //.padding()
+                .background(Color.white)
+                .navigationBarTitle("Hábitos", displayMode: .inline)
             }
-            //.padding()
-            .background(Color.white)
-            .navigationBarTitle("Hábitos", displayMode: .inline)
-        }
         }
     }
 }
-
-
 
 struct HabitoItem: View {
     var nome: String
