@@ -18,7 +18,9 @@ struct Goals: View {
     @State private var metasConcluidas: Int = 3
     @State private var metas: [Meta] = [
         Meta(nome: "Exercício diário", categoria: "Fitness", progresso: 70, icone: "figure.walk"),
-        Meta(nome: "Leia 20 páginas", categoria: "Educação", progresso: 50, icone: "book")
+        Meta(nome: "Leia 20 páginas", categoria: "Educação", progresso: 50, icone: "book.closed"), // Troca de ícone
+        Meta(nome: "Meditação", categoria: "Saúde", progresso: 80, icone: "person.crop.circle"), // Troca de ícone
+        Meta(nome: "Correr", categoria: "Fitness", progresso: 30, icone: "figure.run") // Troca de ícone
     ]
     
     var body: some View {
@@ -70,17 +72,16 @@ struct Goals: View {
                                 .padding(.horizontal)
                         }
                         
-                        // Botão Adicionar Meta
-                        Button(action: {
-                            // Ação para adicionar nova meta
-                        }) {
-                            Text("Adicionar Meta")
-                                .frame(maxWidth: .infinity)
+                        NavigationLink(destination: AddGoalView()) {
+                            Text("Adicionar Hábito")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, maxHeight: 44)
+                                .foregroundColor(.white)
                                 .padding()
                                 .background(Color.black)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
+                                .cornerRadius(10)
                         }
+                 
                         .padding(.horizontal)
                         .padding(.top, 20)
                     }

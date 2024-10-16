@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct Habits: View {
+    @StateObject var controllerHabit = HabitListViewModel()
+    @StateObject var controllerGoal = GoalListViewModel()
+    
     @State private var habitos: [(String, String, Double)] = [
         ("Exercício", "30 minutos", 0.5),
         ("Meditação", "10 minutos", 0.75)
@@ -16,6 +19,7 @@ struct Habits: View {
     
     var body: some View {
         NavigationView {
+            ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Visão geral do hábito")
                     .font(.title2)
@@ -25,21 +29,13 @@ struct Habits: View {
                     VStack {
                         Text("Total de Habitos")
                             .font(.subheadline)
-                        Text("\(habitos.count)")
+                        Text("\(controllerHabit.habits.filter { $0.habilitarLembretes }.count)")
                             .font(.title)
                     }
                     .frame(maxWidth: .infinity)
-                   
+                    
                     Spacer()
                     
-                    NavigationLink(destination: NewHabitView()) {
-                        Text("Adicionar Hábito")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, maxHeight: 44)
-                            .foregroundColor(.white)
-                            .background(Color.black)
-                            .cornerRadius(10)
-                    }
                     VStack {
                         Text("Concluídas")
                             .font(.subheadline)
@@ -56,14 +52,15 @@ struct Habits: View {
                     .font(.headline)
                 
                 VStack(spacing: 10) {
-                    ForEach(habitos, id: \.0) { habito in
-                        HabitoItem(nome: habito.0, duracao: habito.1, progresso: habito.2)
-                    }
-                }
+                    
+                    ForEach(controllerHabit.habits, id: \._id) { habit in
+                        HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
+                                            }
+                                        }
                 
                 Spacer()
                 
-                NavigationLink(destination: AddHabitoView(habitos: $habitos)) {
+                NavigationLink(destination: NewHabitView()) {
                     Text("Adicionar Hábito")
                         .font(.headline)
                         .frame(maxWidth: .infinity, maxHeight: 44)
@@ -77,49 +74,11 @@ struct Habits: View {
             .background(Color.white)
             .navigationBarTitle("Hábitos", displayMode: .inline)
         }
-    }
-}
-
-struct AddHabitoView: View {
-    @Binding var habitos: [(String, String, Double)]
-    @Environment(\.presentationMode) var presentationMode
-
-    @State private var nomeHabito = ""
-    @State private var duracaoHabito = ""
-    @State private var progressoHabito = 0.0
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            TextField("Nome do Hábito", text: $nomeHabito)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("Duração (ex: 30 minutos)", text: $duracaoHabito)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Slider(value: $progressoHabito, in: 0...1, step: 0.05) {
-                Text("Progresso")
-            }
-            Text("Progresso: \(Int(progressoHabito * 100))%")
-            
-            Spacer()
-            
-            Button(action: {
-                // Adiciona o novo hábito e volta para a tela anterior
-                habitos.append((nomeHabito, duracaoHabito, progressoHabito))
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Salvar Hábito")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, maxHeight: 44)
-                    .foregroundColor(.white)
-                    .background(Color.black)
-                    .cornerRadius(10)
-            }
         }
-        .padding()
-        .navigationTitle("Adicionar Hábito")
     }
 }
+
+
 
 struct HabitoItem: View {
     var nome: String

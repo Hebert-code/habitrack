@@ -7,115 +7,96 @@
 
 import SwiftUI
 
-
 struct Archievements: View {
-    @State private var habitosCumpridos: Int = 45
-    @State private var metasAlcancadas: Int = 3
-    @State private var linhaDoTempo: [HistoricoDia] = [
-        HistoricoDia(data: "08/10", habitos: [("Beber água", true), ("Ler", true), ("Meditar", false)]),
-        HistoricoDia(data: "07/10", habitos: [("Beber água", true), ("Ler", true), ("Meditar", false)]),
-        HistoricoDia(data: "06/10", habitos: [("Beber água", true), ("Ler", true), ("Meditar", false)]),
-        HistoricoDia(data: "05/10", habitos: [("Beber água", true), ("Ler", true), ("Meditar", false)]),
-        HistoricoDia(data: "04/10", habitos: [("Beber água", true), ("Ler", true), ("Meditar", false)]),
-        // Adicionar mais dados conforme necessário...
-    ]
-    
+    // Variável de estado para a seleção da data
+    @State private var selectedDate = Date()
+
     var body: some View {
-        NavigationView{
+        NavigationView {
             VStack {
-                VStack(spacing: 20) {
-                    Text("Realizados")
-                    HStack {
-                        VStack {
-                            Text("Hábitos")
-                                .font(.headline)
-                            Text("\(habitosCumpridos)")
-                                .font(.largeTitle)
-                                .bold()
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        VStack {
-                            Text("Metas")
-                                .font(.headline)
-                            Text("\(metasAlcancadas)")
-                                .font(.largeTitle)
-                                .bold()
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                    .padding(15)
-                    .background(.red)
-                    .padding(10)
-                    
-                    // Seção de Linha do Tempo
-                    Text("Linha do Tempo")
-                        .font(.title2)
-                        .bold()
-                        .padding(.top)
+               // Text("Hábitos e Metas")
+                //    .font(.largeTitle)
+                 //   .padding()
+
+                // DatePicker para selecionar a data
+                DatePicker("Escolha uma data", selection: $selectedDate, displayedComponents: .date)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .labelsHidden() // Oculta o rótulo
+                    .padding()
+
+                // Botão de histórico, passando a data selecionada para a próxima view
+                NavigationLink(destination: HistoricoView(selectedDate: selectedDate)) {
+                    Text("Ver Histórico")
+                        .font(.headline)
+                        .padding()
+                        .background(Color.black)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
-                
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 10) {
-                        ForEach(linhaDoTempo) { dia in
-                            HStack {
-                                Text(dia.data)
-                                    .bold()
-                                    .frame(width: 70, alignment: .leading)
-                                ForEach(dia.habitos, id: \.0) { habito in
-                                    HStack(spacing: 5) {
-                                        Text(habito.0)
-                                        if habito.1 {
-                                            Image(systemName: "checkmark")
-                                                .foregroundColor(.green)
-                                        } else {
-                                            Image(systemName: "xmark")
-                                                .foregroundColor(.red)
-                                        }
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
-                    }
-                }
+
+                Spacer()
             }
-            .navigationBarTitle("Histórico", displayMode: .inline)
             .padding()
+            .navigationBarTitle("Histórico", displayMode: .inline)
         }
     }
 }
 
-struct HistoricoDia: Identifiable {
-    let id = UUID()
-    let data: String
-    let habitos: [(String, Bool)] // Nome do hábito e se foi cumprido (true/false)
-}
+struct HistoricoView: View {
+    @Environment(\.dismiss) var dismiss
 
-struct ContentView: View {
+    // Recebe a data selecionada
+    let selectedDate: Date
+
+    // Formatação da data
+    var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: selectedDate)
+    }
+
     var body: some View {
-        TabView {
-            Text("Painel")
-                .tabItem {
-                    Label("Painel", systemImage: "house")
+        VStack {
+            // Exibe a data no lugar do título "Histórico de Metas"
+            Text("\(formattedDate)")
+                .font(.largeTitle)
+                .padding()
+
+            List {
+                // Seção para Metas Concluídas e Não Concluídas
+                Section(header: Text("Metas Concluídas")) {
+                    Text("Meta 1 - Correr uma maratona")
                 }
-            
-            Goals()
-                .tabItem {
-                    Label("Metas", systemImage: "flag")
+                Section(header: Text("Metas Não Concluídas")) {
+                    Text("Meta 3 - Ir para entrevista de emprego")
                 }
-            
-            Monitoring()
-                .tabItem {
-                    Label("Hábitos", systemImage: "checkmark.circle")
+                
+                // Seção para Hábitos Concluídos e Não Concluídos
+                Section(header: Text("Hábitos Concluídos")) {
+                    Text("Hábito 1 - Meditação")
                 }
-            
-            Archievements()
-                .tabItem {
-                    Label("Histórico", systemImage: "clock")
+                Section(header: Text("Hábitos Não Concluídos")) {
+                    Text("Hábito 2 - Programar 30 minutos")
                 }
+            }
+
+            // Botão para voltar à tela anterior
+            Button(action: {
+                dismiss()
+            }) {
+                Text("Voltar")
+                    .font(.headline)
+                    .padding()
+                    .background(Color.black)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding()
+
+            Spacer()
         }
+        .padding()
+        .navigationBarTitle("Histórico", displayMode: .inline)
     }
 }
 
