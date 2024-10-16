@@ -7,8 +7,8 @@ struct AddGoalView: View {
     @State private var categoria = "Saúde"
     @State private var dataInicio = Date()
     @State private var dataTermino = Date()
-    @State private var icone: String = ""
-    @State private var progresso: Int = 0
+    @State private var showAlert = false
+    @State private var alertMessage = ""
 
     var body: some View {
         NavigationView {
@@ -45,7 +45,7 @@ struct AddGoalView: View {
                                 .foregroundColor(.blue)
                             DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
                                 .datePickerStyle(DefaultDatePickerStyle())
-                                .background(Color.blue.opacity(0.1)) // Fundo leve para o DatePicker
+                                .background(Color.blue.opacity(0.1))
                                 .cornerRadius(10)
                         }
 
@@ -54,23 +54,32 @@ struct AddGoalView: View {
                                 .foregroundColor(.blue)
                             DatePicker("Data de Término", selection: $dataTermino, displayedComponents: .date)
                                 .datePickerStyle(DefaultDatePickerStyle())
-                                .background(Color.blue.opacity(0.1)) // Fundo leve para o DatePicker
+                                .background(Color.blue.opacity(0.1))
                                 .cornerRadius(10)
                         }
                     }
 
                     Section {
                         Button(action: {
-                            let formatter = DateFormatter()
-                            formatter.dateFormat = "yyyy-MM-dd"
-                            viewModel.insertGoal(
-                                nomeGoal: nomeGoal,
-                                descricao: descricao,
-                                categoria: categoria,
-                                dataInicio: formatter.string(from: dataInicio),
-                                dataTermino: formatter.string(from: dataTermino),
-                                type: "goal"
-                            )
+                            if nomeGoal.isEmpty {
+                                alertMessage = "O nome da meta não pode estar vazio."
+                                showAlert = true
+                            } else {
+                                let formatter = DateFormatter()
+                                formatter.dateFormat = "yyyy-MM-dd"
+                                viewModel.insertGoal(
+                                    nomeGoal: nomeGoal,
+                                    descricao: descricao,
+                                    categoria: categoria,
+                                    dataInicio: formatter.string(from: dataInicio),
+                                    dataTermino: formatter.string(from: dataTermino),
+                                    type: "goal"
+                                )
+                                alertMessage = "Meta salva com sucesso!"
+                                showAlert = true
+                                nomeGoal = "" // Limpa o campo após salvar
+                                descricao = ""
+                            }
                         }) {
                             Text("Salvar Meta")
                                 .frame(maxWidth: .infinity)
@@ -82,9 +91,13 @@ struct AddGoalView: View {
                         }
                     }
                 }
-                .navigationTitle("Adicionar Meta")
-                .background(Color(UIColor.systemGroupedBackground)).cornerRadius(10)
+                .navigationBarTitle("Adicionar Metas", displayMode: .inline)
+                .background(Color(UIColor.systemGroupedBackground))
+                .cornerRadius(10)
                 .padding()
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Atenção"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                }
             }
         }
     }
