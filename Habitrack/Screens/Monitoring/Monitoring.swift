@@ -113,7 +113,7 @@ struct test: View {
                     Label("Metas", systemImage: "flag")
                 }
             
-            Archievements()
+            Achievements()
                 .tabItem {
                     Label("Hábitos", systemImage: "checkmark.circle")
                 }

@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct Relatories: View {
+struct Relatory: View {
     var body: some View {
-        NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     // Resumo Geral
@@ -69,8 +68,6 @@ struct Relatories: View {
                 .padding(.top)
             }
             .navigationBarTitle("Relatórios", displayMode: .inline)
-
-        }
     }
 }
 
@@ -112,5 +109,5 @@ struct PerformanceRow: View {
 }
 
 #Preview {
-    Relatories()
+    Relatory()
 }

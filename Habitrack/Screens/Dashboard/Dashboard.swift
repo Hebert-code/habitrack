@@ -14,16 +14,20 @@ struct DashboardView: View {
             ScrollView {
                 VStack(alignment: .center, spacing: 20) {
                     HStack {
-                        QuickLinkView(title: "Relatórios", imageName: "chart.bar")
-                        QuickLinkView(title: "Recomendações", imageName: "pencil")
+                        QuickLinkView(
+                            title: "Relatórios",
+                            imageName: "chart.bar",
+                            destination: Relatory())
+                        QuickLinkView(
+                            title: "Recomendações",
+                            imageName: "pencil",
+                            destination: Recomendations())
                     }
                     .frame(width: .infinity, alignment: .center)
                     .padding()
                     
                     // Objetivos em Progresso Button
                     DefaultButton(callback: {}, title: "Objetivos em Progresso")
-                    
-                    
                
                     SectionTitle(title: "Hábitos em andamento")
                     
@@ -71,13 +75,13 @@ struct DashboardView: View {
                         NavigationLink(destination: Recomendations()) {
                             NotificationButton(title: "Dicas e Motivação")
                         }
-                        NavigationLink(destination: Relatories()) {
+                        NavigationLink(destination: Relatory()) {
                             NotificationButton(title: "Relatórios")
                         }
                         NavigationLink(destination: Goals()) {
                             NotificationButton(title: "Conquistas")
                         }
-                        NavigationLink(destination: Archievements()) {
+                        NavigationLink(destination: Achievements()) {
                             NotificationButton(title: "Histórico")
                         }
                     }

@@ -32,7 +32,7 @@ struct MainView: View {
                     Label("Metas", systemImage: "trophy.fill")
                 }
             
-            Archievements()
+            Achievements()
                 .tabItem {
                     Label("Acompanhamento", systemImage: "chart.bar.fill")
                 }

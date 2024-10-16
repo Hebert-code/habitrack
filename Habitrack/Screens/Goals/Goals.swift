@@ -88,11 +88,8 @@ struct Goals: View {
     }
 }
 
-
-
 struct MetaRowView: View {
-    var metass: Goal // A MetaRowView agora recebe uma meta do tipo Goal
-
+    var metass: Goal
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
