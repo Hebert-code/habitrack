@@ -7,32 +7,26 @@ struct Home: View {
         NavigationStack {
             ZStack {
                 // Tela de fundo ou cor
-                Color.white.ignoresSafeArea()
+                Color.black.ignoresSafeArea()
                 
                 VStack {
-                    Text("HabitTrack")
-                        .font(.largeTitle)
-                        .padding(.top, 100) // Espaçamento superior
-
-                    Button(action: {
-                        isActive = true // Muda o estado para ativar a navegação
-                    }) {
-                        Text("Entrar")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, maxHeight: 44)
-                            .foregroundColor(.white)
-                            .background(Color.black)
-                            .cornerRadius(10)
-                            .padding(.horizontal, 20) // Adiciona algum espaçamento horizontal
-                    }
-                    .padding(.bottom, 20) // Espaçamento inferior
+                    Image("improvement").resizable().frame(width: 250, height: 250)
+                    Text("HabiTrack")
+                        .font(.title)
+                        .frame(maxWidth: .infinity, maxHeight: 80)
+                        .foregroundColor(.white)
+                        .background(Color.black)
+                        .cornerRadius(10)
+                        .padding(.horizontal, 20) // Adiciona algum espaçamento horizontal
+                        .padding(.bottom, 20) // Espaçamento inferior
+                }
+                .onTapGesture {
+                    isActive = true // Muda o estado para ativar a navegação
                 }
             }
             .navigationDestination(isPresented: $isActive) { // Usando navigationDestination
                 MainView() // Navega para MainView
             }
-            //.navigationBarBackButtonHidden(false)
-           // .navigationBarHidden(false) // Oculta a barra de navegação
         }
     }
 }
