@@ -94,17 +94,7 @@ struct Goals: View {
     }
 }
 
-struct Meta: Identifiable {
-    let id = UUID()
-    let nome: String
-    let categoria: String
-    let progresso: Int
-    let icone: String
-}
-
 struct MetaRowView: View {
-    var meta: Meta
-    
     var body: some View {
         HStack {
             Image(systemName: meta.icone)

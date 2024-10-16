@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Archievements: View {
+struct Achievements: View {
     // Variável de estado para a seleção da data
     @State private var selectedDate = Date()
 
@@ -102,5 +102,5 @@ struct HistoricoView: View {
 
 
 #Preview {
-    Archievements()
+    Achievements()
 }
