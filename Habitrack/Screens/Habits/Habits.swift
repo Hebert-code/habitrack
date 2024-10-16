@@ -29,7 +29,7 @@ struct Habits: View {
                     VStack {
                         Text("Total de Habitos")
                             .font(.subheadline)
-                        Text("\(controllerHabit.habits.filter { $0.habilitarLembretes }.count)")
+                        Text("\(controllerHabit.habits.count)")
                             .font(.title)
                     }
                     .frame(maxWidth: .infinity)
@@ -68,9 +68,9 @@ struct Habits: View {
                         .background(Color.black)
                         .cornerRadius(10)
                 }
-                .padding(.bottom, 20)
+               // .padding(.bottom, 20)
             }
-            .padding()
+            //.padding()
             .background(Color.white)
             .navigationBarTitle("Hábitos", displayMode: .inline)
         }

@@ -15,26 +15,31 @@ struct NewHabitView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Detalhes do Hábito")) {
+                Section(header: Text("Nome")) {
                     TextField("Nome do Hábito", text: $nomeHabito)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     
-                    TextField("Descrição", text: $descricaoHabito)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
                     
+                    Section(header: Text("Descrição")) {
+                        TextField("Descrição", text: $descricaoHabito)
+                        }
+                 
+                Section{
                     Picker("Frequência", selection: $frequencia) {
                         ForEach(["Diário", "Semanal", "Mensal"], id: \.self) { Text($0) }
                     }
-                    
+                    .padding(2)
                     DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
-                    
+                        .padding(2)
                     Picker("Meta", selection: $goalSelected) {
                         Text("Selecione")
                         ForEach(controllerGoal.goals, id: \._id) {
                             Text($0.nomeGoal)
                         }
                     }
+                    .padding(2)
                 }
+            
                 
                 Section {
                     Toggle("Habilitar Lembretes", isOn: $habilitarLembretes)
@@ -45,7 +50,7 @@ struct NewHabitView: View {
                         }
                     }
                 }
-                Section {
+               Section {
                     Button(action: {
                         let formatter = DateFormatter()
                         formatter.dateFormat = "yyyy-MM-dd"
@@ -59,17 +64,20 @@ struct NewHabitView: View {
                             frequenciaLembrete: frequenciaLembrete,
                             type: "habit"
                         )
+                        nomeHabito = ""
+                        
+                        
                     }) {
                         Text("Salvar Hábito")
                             .frame(maxWidth: .infinity, maxHeight: 44)
                             .foregroundColor(.white)
                             .background(Color.black)
                             .cornerRadius(10)
-                            .padding(.top, 10)
+                         
                     }
                 }
             }
-            .navigationTitle("Adicionar Hábito")
+            .navigationBarTitle("Adicionar Hábito", displayMode: .inline)
             .onAppear {
                 controllerGoal.fetchGoals()
             }
