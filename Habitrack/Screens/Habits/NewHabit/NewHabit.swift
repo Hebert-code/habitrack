@@ -1,88 +1,79 @@
 import SwiftUI
 
 struct NewHabitView: View {
-    @StateObject private var viewModel = HabitListViewModel()
-    @State private var nomeHabito: String = ""
-    @State private var descricaoHabito: String = ""
-    @State private var frequencia: String = "Diário"
+    @StateObject var controllerHabit = HabitListViewModel()
+    @StateObject var controllerGoal = GoalListViewModel()
+    
+    @State private var nomeHabito = ""
+    @State private var descricaoHabito = ""
+    @State private var frequencia = "Diário"
     @State private var dataInicio = Date()
-    @State private var metaSelecionada: String = "Meta 1"
-    @State private var habilitarLembretes: Bool = false
-    @State private var frequenciaLembrete: String = "Diário"
-
+    @State private var goalSelected: String = "Selecione"
+    @State private var habilitarLembretes = false
+    @State private var frequenciaLembrete = "Diário"
+    
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Nome do Hábito")) {
-                    TextField("Insira o nome do hábito", text: $nomeHabito)
-                }
-
-                Section(header: Text("Descrição")) {
-                    TextField("Descreva seu hábito", text: $descricaoHabito)
-                }
-
-                Section(header: Text("Frequência")) {
+                Section(header: Text("Detalhes do Hábito")) {
+                    TextField("Nome do Hábito", text: $nomeHabito)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("Descrição", text: $descricaoHabito)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
                     Picker("Frequência", selection: $frequencia) {
-                        ForEach(viewModel.frequencias, id: \.self) { freq in
-                            Text(freq)
+                        ForEach(["Diário", "Semanal", "Mensal"], id: \.self) { Text($0) }
+                    }
+                    
+                    DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
+                    
+                    Picker("Meta", selection: $goalSelected) {
+                        Text("Selecione")
+                        ForEach(controllerGoal.goals, id: \._id) {
+                            Text($0.nomeGoal)
                         }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal)
                 }
-
-                DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
-
-                Section(header: Text("Meta Correspondente")) {
-                    Picker("Meta", selection: $metaSelecionada) {
-                        ForEach(viewModel.metas, id: \.self) { meta in
-                            Text(meta)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal)
-                }
-
-                Section(header: Text("Configurações de Lembrete")) {
-                    Toggle(isOn: $habilitarLembretes) {
-                        Text("Habilitar lembretes")
-                    }
-                    .padding(.horizontal)
+                
+                Section {
+                    Toggle("Habilitar Lembretes", isOn: $habilitarLembretes)
                     
                     if habilitarLembretes {
-                        Picker("Frequência", selection: $frequenciaLembrete) {
-                            ForEach(viewModel.frequenciasLembrete, id: \.self) { freq in
-                                Text(freq)
-                            }
+                        Picker("Frequência do Lembrete", selection: $frequenciaLembrete) {
+                            ForEach(["Diário", "Semanal", "Mensal"], id: \.self) { Text($0) }
                         }
-                        .padding(.horizontal)
                     }
                 }
-
-                DefaultButton(callback: {
-                    enviarHabit()
-                }, title: "Salvar Hábito");
+                Section {
+                    Button(action: {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy-MM-dd"
+                        controllerHabit.insertHabit(
+                            nomeHabito: nomeHabito,
+                            descricaoHabito: descricaoHabito,
+                            frequencia: frequencia,
+                            dataInicio: formatter.string(from: dataInicio),
+                            goalID: nil,
+                            habilitarLembretes: habilitarLembretes,
+                            frequenciaLembrete: frequenciaLembrete,
+                            type: "habit"
+                        )
+                    }) {
+                        Text("Salvar Hábito")
+                            .frame(maxWidth: .infinity, maxHeight: 44)
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                            .cornerRadius(10)
+                            .padding(.top, 10)
+                    }
+                }
             }
-            .navigationTitle("Novo Hábito")
+            .navigationTitle("Adicionar Hábito")
+            .onAppear {
+                controllerGoal.fetchGoals()
+            }
         }
-        .navigationBarTitle("Novo Hábito", displayMode: .inline)
-    }
-
-    private func enviarHabit() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let formattedDate = formatter.string(from: dataInicio)
-        
-        viewModel.insertHabit(
-            nomeHabito: nomeHabito,
-            descricaoHabito: descricaoHabito,
-            frequencia: frequencia,
-            dataInicio: formattedDate,
-            metaSelecionada: metaSelecionada,
-            habilitarLembretes: habilitarLembretes,
-            frequenciaLembrete: frequenciaLembrete,
-            type: "habit"
-        )
     }
 }
 

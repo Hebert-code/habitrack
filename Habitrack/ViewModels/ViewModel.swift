@@ -1,52 +1,62 @@
 import Foundation
 import Combine
 
-final class HabitListViewModel: ObservableObject {
-    
-    @Published var habits = [Habit]()
+final class GoalListViewModel: ObservableObject {
+    @Published var goals : [Goal] = []
     let webService = WebService()
     
-    let frequencias = ["Diário", "Semanal", "Mensal"]
-    let metas = ["Meta 1", "Meta 2", "Meta 3"]
-    let frequenciasLembrete = ["Diário", "Semanal", "Mensal"]
-    
+    init() {
+        fetchGoals()
+    }
+
+    func fetchGoals() {
+        webService.getAllGoals { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let goals):
+                    self?.goals = goals
+                    print("Metas ----------")
+                    print(goals)
+                case .failure(let error):
+                    print("Erro ao buscar goals: \(error)")
+                }
+            }
+        }
+    }
+
+    func insertGoal(nomeGoal: String, descricao: String, categoria: String, dataInicio: String, dataTermino: String, type: String, progresso: Int, icone: String) {
+        let newGoal = Goal(nomeGoal: nomeGoal, descricao: descricao, categoria: categoria, dataInicio: dataInicio, dataTermino: dataTermino, type: type, icone: icone, progresso: progresso)
+        webService.insertGoal(goal: newGoal) { [weak self] in
+            self?.fetchGoals()
+        }
+    }
+}
+
+final class HabitListViewModel: ObservableObject {
+    @Published var habits = [Habit]()
+    @Published var goals = [Goal]() // Lista de goals disponíveis para associação
+    let webService = WebService()
+
     init() {
         fetchHabits()
     }
 
-    private func fetchHabits() {
+    public func fetchHabits() {
         webService.getAllHabits { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let habits):
                     self?.habits = habits
                 case .failure(let error):
-                    print("Error fetching habits: \(error)")
+                    print("Erro ao buscar hábitos: \(error)")
                 }
             }
         }
     }
 
-    func deleteHabit(at index: Int) {
-        webService.deleteHabit(id: habits[index].id) { [weak self] in
-            self?.fetchHabits()
-        }
-    }
-
-    // Insert a new habit
-    func insertHabit(nomeHabito: String, descricaoHabito: String, frequencia: String, dataInicio: String, metaSelecionada: String, habilitarLembretes: Bool, frequenciaLembrete: String, type: String) {
-        let newHabit = Habit(nomeHabito: nomeHabito, descricaoHabito: descricaoHabito, frequencia: frequencia, dataInicio: dataInicio, metaSelecionada: metaSelecionada, habilitarLembretes: habilitarLembretes, frequenciaLembrete: frequenciaLembrete, type: type)
-        
+    func insertHabit(nomeHabito: String, descricaoHabito: String, frequencia: String, dataInicio: String, goalID: UUID?, habilitarLembretes: Bool, frequenciaLembrete: String?, type: String) {
+        let newHabit = Habit(nomeHabito: nomeHabito, descricaoHabito: descricaoHabito, frequencia: frequencia, dataInicio: dataInicio, goalID: goalID, habilitarLembretes: habilitarLembretes, frequenciaLembrete: frequenciaLembrete, type: type)
         webService.insertHabit(habit: newHabit) { [weak self] in
-            self?.fetchHabits()
-        }
-    }
-
-    // Update an existing habit
-    func updateHabit(habit: Habit, newNomeHabito: String) {
-        let updatedHabit = Habit(id: habit.id, nomeHabito: newNomeHabito, descricaoHabito: habit.descricaoHabito, frequencia: habit.frequencia, dataInicio: habit.dataInicio, metaSelecionada: habit.metaSelecionada, habilitarLembretes: habit.habilitarLembretes, frequenciaLembrete: habit.frequenciaLembrete, type: habit.type)
-        
-        webService.updateHabit(habit: updatedHabit) { [weak self] in
             self?.fetchHabits()
         }
     }
