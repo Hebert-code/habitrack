@@ -31,10 +31,7 @@ struct AddGoalView: View {
                     categoria: categoria,
                     dataInicio: formatter.string(from: dataInicio),
                     dataTermino: formatter.string(from: dataTermino),
-                    type: "goal",
-                    progresso: progresso,
-                    icone: icone
-                    
+                    type: "goal"
                 )
             }
         }
