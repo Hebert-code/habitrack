@@ -30,8 +30,6 @@ final class GoalListViewModel: ObservableObject {
             self?.fetchGoals()
         }
     }
-    
-
 }
 
 final class HabitListViewModel: ObservableObject {

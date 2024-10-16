@@ -45,7 +45,6 @@ struct NewHabitView: View {
                         }
                     }
                 }
-                
                 Section {
                     Button(action: {
                         let formatter = DateFormatter()
