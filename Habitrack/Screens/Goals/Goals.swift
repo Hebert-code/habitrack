@@ -10,18 +10,9 @@ import SwiftUI
 
 struct Goals: View {
     
-    @StateObject var controllerHabit = HabitListViewModel()
     @StateObject var controllerGoal = GoalListViewModel()
     
-    
-    @State private var totalMetas: Int = 5
     @State private var metasConcluidas: Int = 3
-    @State private var metas: [Meta] = [
-        Meta(nome: "Exercício diário", categoria: "Fitness", progresso: 70, icone: "figure.walk"),
-        Meta(nome: "Leia 20 páginas", categoria: "Educação", progresso: 50, icone: "book.closed"), // Troca de ícone
-        Meta(nome: "Meditação", categoria: "Saúde", progresso: 80, icone: "person.crop.circle"), // Troca de ícone
-        Meta(nome: "Correr", categoria: "Fitness", progresso: 30, icone: "figure.run") // Troca de ícone
-    ]
     
     var body: some View {
         NavigationView{
@@ -32,7 +23,7 @@ struct Goals: View {
                             VStack {
                                 Text("Total de Metas")
                                     .font(.subheadline)
-                                Text("\(totalMetas)")
+                                Text("\(controllerGoal.goals.count)")
                                     .font(.title)
                             }
                             
@@ -67,10 +58,11 @@ struct Goals: View {
                         }
                         .padding(.horizontal)
                         
-                        ForEach(metas) { meta in
-                            MetaRowView(meta: meta)
-                                .padding(.horizontal)
+                        ForEach(controllerGoal.goals) { goal in
+                            MetaRowView(metass: goal)
+                            .padding(.horizontal)
                         }
+
                         
                         NavigationLink(destination: AddGoalView()) {
                             Text("Adicionar Hábito")
@@ -89,48 +81,32 @@ struct Goals: View {
                 }
             }
             .navigationBarTitle("Metas", displayMode: .inline)
+        }.onAppear(){
+            controllerGoal.fetchGoals()
         }
         
     }
 }
 
-struct Meta: Identifiable {
-    let id = UUID()
-    let nome: String
-    let categoria: String
-    let progresso: Int
-    let icone: String
-}
+
 
 struct MetaRowView: View {
-    var meta: Meta
-    
+    var metass: Goal // A MetaRowView agora recebe uma meta do tipo Goal
+
     var body: some View {
         HStack {
-            Image(systemName: meta.icone)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 40, height: 40)
-                .padding(.trailing, 10)
             VStack(alignment: .leading) {
-                Text(meta.nome)
+                Text(metas.nomeGoal) // Exibe o nome da meta
                     .font(.headline)
-                Text(meta.categoria)
+                Text(metas.categoria) // Exibe a categoria da meta
                     .font(.subheadline)
-                    .foregroundColor(.gray)
-                ProgressView(value: Float(meta.progresso) / 100)
-                    .progressViewStyle(LinearProgressViewStyle())
-                    .tint(.black)
-                Text("Progresso atual: \(meta.progresso)%")
-                    .font(.caption)
                     .foregroundColor(.gray)
             }
             Spacer()
         }
         .padding()
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(10)
-        
+        .background(Color.gray.opacity(0.1)) // Estilo de fundo
+        .cornerRadius(10) // Cantos arredondados
     }
 }
 
