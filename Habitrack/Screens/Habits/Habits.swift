@@ -19,6 +19,7 @@ struct Habits: View {
     
     var body: some View {
         NavigationView {
+            ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Visão geral do hábito")
                     .font(.title2)
@@ -28,11 +29,11 @@ struct Habits: View {
                     VStack {
                         Text("Total de Habitos")
                             .font(.subheadline)
-                        Text("\(habitos.count)")
+                        Text("\(controllerHabit.habits.filter { $0.habilitarLembretes }.count)")
                             .font(.title)
                     }
                     .frame(maxWidth: .infinity)
-                   
+                    
                     Spacer()
                     
                     VStack {
@@ -51,13 +52,11 @@ struct Habits: View {
                     .font(.headline)
                 
                 VStack(spacing: 10) {
-                    ForEach(controllerHabit.habits, id: \._id) {
-                        Text($0.nomeHabito)
-                    }
-                  //  ForEach(habitos, id: \.0) { habito in
-                    //    HabitoItem(nome: habito.0, duracao: habito.1, progresso: habito.2)
-                  //  }
-                }
+                    
+                    ForEach(controllerHabit.habits, id: \._id) { habit in
+                        HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
+                                            }
+                                        }
                 
                 Spacer()
                 
@@ -74,6 +73,7 @@ struct Habits: View {
             .padding()
             .background(Color.white)
             .navigationBarTitle("Hábitos", displayMode: .inline)
+        }
         }
     }
 }
