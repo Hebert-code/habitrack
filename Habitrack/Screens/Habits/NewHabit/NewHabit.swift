@@ -21,19 +21,23 @@ struct NewHabitView: View {
             Form {
                 Section(header: Text("Nome").foregroundColor(.black)) {
                     TextField("Nome do Hábito", text: $nomeHabito)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
                 Section(header: Text("Descrição").foregroundColor(.black)) {
                     TextField("Descrição", text: $descricaoHabito)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
                 Section(header: Text("Detalhes").foregroundColor(.black)) {
                     Picker("Frequência", selection: $frequencia) {
                         ForEach(["Diário", "Semanal", "Mensal"], id: \.self) { Text($0) }
                     }
+                    .pickerStyle(SegmentedPickerStyle())
                     .padding(2)
                     
                     DatePicker("Data de Início", selection: $dataInicio, displayedComponents: .date)
+                        .datePickerStyle(CompactDatePickerStyle()) // Estilo mais fechado
                         .padding(2)
                     
                     Picker("Meta", selection: $goalSelected) {
@@ -42,6 +46,7 @@ struct NewHabitView: View {
                             Text($0.nomeGoal).tag($0.nomeGoal)
                         }
                     }
+                    .pickerStyle(MenuPickerStyle())
                     .padding(2)
                 }
                 
@@ -52,6 +57,8 @@ struct NewHabitView: View {
                         Picker("Frequência do Lembrete", selection: $frequenciaLembrete) {
                             ForEach(["Diário", "Semanal", "Mensal"], id: \.self) { Text($0) }
                         }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding(2)
                     }
                 }
                 
@@ -73,7 +80,8 @@ struct NewHabitView: View {
                                 goalID: nil,
                                 habilitarLembretes: habilitarLembretes,
                                 frequenciaLembrete: frequenciaLembrete,
-                                type: "habit"
+                                type: "habit",
+                                progressoH: 0
                             )
                             
                             // Limpar todos os campos
@@ -90,9 +98,9 @@ struct NewHabitView: View {
                         }
                     }) {
                         Text("Salvar Hábito")
-                            .frame(width: 350, height: 44)
+                            .frame(maxWidth: .infinity, maxHeight: 44)
                             .foregroundColor(.white)
-                            .background(Color.black)
+                            .background(Color.blue) // Cor de fundo azul
                             .cornerRadius(15)
                     }
                     .alert(isPresented: $showAlert) {
@@ -107,6 +115,7 @@ struct NewHabitView: View {
                 }
             }
             .navigationBarTitle("Adicionar Hábito", displayMode: .inline)
+            .background(Color(UIColor.systemGroupedBackground)) // Fundo mais suave
             .onAppear {
                 controllerGoal.fetchGoals()
             }

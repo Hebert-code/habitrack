@@ -69,7 +69,8 @@ struct AddGoalView: View {
                                 categoria: categoria,
                                 dataInicio: formatter.string(from: dataInicio),
                                 dataTermino: formatter.string(from: dataTermino),
-                                type: "goal"
+                                type: "goal",
+                                progresso: 0
                             )
                         }) {
                             Text("Salvar Meta")
