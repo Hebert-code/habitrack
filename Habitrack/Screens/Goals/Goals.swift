@@ -59,7 +59,7 @@ struct Goals: View {
                         .padding(.horizontal)
                         
                         ForEach(controllerGoal.goals) { goal in
-                            MetaRowView(metass: goal)
+                            MetaRowView(metas: goal)
                             .padding(.horizontal)
                         }
 
@@ -89,7 +89,7 @@ struct Goals: View {
 }
 
 struct MetaRowView: View {
-    var metass: Goal
+    var metas: Goal
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
