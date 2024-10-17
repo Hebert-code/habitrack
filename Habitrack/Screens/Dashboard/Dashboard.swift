@@ -24,7 +24,7 @@ struct DashboardView: View {
                     // Objetivos em Progresso Button
                     DefaultButton(callback: {}, title: "Objetivos em Progresso")
                
-                    SectionTitle(title: "Hábitos em andamento")
+                    SectionTitle(title: "Metas em andamento")
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
@@ -40,7 +40,7 @@ struct DashboardView: View {
                         .padding(.horizontal)
                     }
               
-                    SectionTitle(title: "Metas em andamento")
+                    SectionTitle(title: "Hábitos em andamento")
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
