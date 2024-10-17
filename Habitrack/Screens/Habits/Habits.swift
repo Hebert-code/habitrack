@@ -57,26 +57,23 @@ struct Habits: View {
                                     .foregroundColor(.blue)
                             }
                         }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .padding(/*@START_MENU_TOKEN@*/EdgeInsets()/*@END_MENU_TOKEN@*/)
+                    .background(Color(UIColor.systemGray6))
+                    .cornerRadius(10)
+                    
+                    Text("Lista de hábitos")
+                        .font(.headline)
                         .padding(.horizontal)
                         
                         // Lista de Hábitos
                         ForEach(controllerHabit.habits, id: \._id) { habit in
-                            HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
-                                .padding(.horizontal)
+                            NavigationLink(destination: HabitDetailView(habit: habit)) {
+                                   HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
+                               }
                         }
-
-                        // Botão para Adicionar Hábito
-                        NavigationLink(destination: NewHabitView()) {
-                            Text("Adicionar Hábito")
-                                .font(.headline)
-                                .frame(maxWidth: .infinity, maxHeight: 44)
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.blue) // Cor de fundo azul
-                                .cornerRadius(10)
-                        }
-                        .padding(.horizontal)
-                        .padding(.top, 20)
+                        .foregroundColor(.black)
                     }
                     .padding(.top)
                 }

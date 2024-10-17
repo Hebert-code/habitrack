@@ -55,15 +55,16 @@ struct Goals: View {
                         }
                         .padding(.horizontal)
                         
-                        // Lista de Metas
                         ForEach(controllerGoal.goals) { goal in
-                            MetaRowView(metas: goal)
-                                .padding(.horizontal)
+                            NavigationLink(destination: GoalDetailView(goal: goal)) {
+                                MetaRowView(metas: goal)
+                            }
+                            .padding(.horizontal)
                         }
 
                         // Botão para Adicionar Meta
                         NavigationLink(destination: AddGoalView()) {
-                            Text("Adicionar Hábito")
+                            Text("Adicionar Meta")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity, maxHeight: 44)
                                 .foregroundColor(.white)

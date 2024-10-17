@@ -1,27 +1,10 @@
-//
-//  Acompanhamento.swift
-//  Habitrack
-///Users/student14/Desktop/Habitrack/Habitrack/Screens/Relatories
-//  Created by Turma01-14 on 09/10/24.
-//
-
 import SwiftUI
 
 struct Monitoring: View {
-    @State private var habitos: [Habito] = [
-        Habito(nome: "Exercício", duracao: "30 minutos", concluido: true),
-        Habito(nome: "Meditação", duracao: "10 minutos", concluido: true),
-        Habito(nome: "Beber Água", duracao: "2 Litros", concluido: false),
-        Habito(nome: "Leitura", duracao: "30 minutos", concluido: false)
-    ]
-    
-    @State private var progressoDoDia: Float = 63
-    @State private var habitosCumpridos: Int = 5
-    @State private var totalHabitos: Int = 8
-    @State private var notificacoesPendentes: [String] = [
-        "Lembre-se de beber Água",
-        "Você ainda não leu hoje. Que tal 15 minutos?"
-    ]
+    @StateObject var controllerHabit = HabitListViewModel() // Usando o HabitListViewModel
+
+    @State private var progressoDoDia: Float = 0.0
+    @State private var habitosCumpridos: Int = 0
     
     var body: some View {
         VStack {
@@ -34,17 +17,18 @@ struct Monitoring: View {
                         .bold()
                         .padding(.horizontal)
                     
-                    ForEach(habitos) { habito in
+                    // Listagem dos hábitos a partir do controllerHabit
+                    ForEach(controllerHabit.habits, id: \.id) { habito in // Usar o id: \.id
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(habito.nome)
+                                Text(habito.nomeHabito)
                                     .font(.headline)
-                                Text(habito.duracao)
+                                Text(habito.descricaoHabito)
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                             }
                             Spacer()
-                            if habito.concluido {
+                            if habito.habilitarLembretes {
                                 Image(systemName: "checkmark")
                                     .foregroundColor(.green)
                                     .padding(.trailing)
@@ -63,7 +47,7 @@ struct Monitoring: View {
                         .padding(.horizontal)
                     
                     HStack {
-                        Text("\(habitosCumpridos)/\(totalHabitos) hábitos cumpridos")
+                        Text("\(habitosCumpridos)/\(controllerHabit.habits.count) hábitos cumpridos")
                         Spacer()
                         Text("\(Int(progressoDoDia))%")
                     }
@@ -73,56 +57,26 @@ struct Monitoring: View {
                         .progressViewStyle(LinearProgressViewStyle())
                         .padding(.horizontal)
                     
-                    // Notificações Pendentes
-                    Text("Notificações Pendentes")
-                        .font(.title3)
-                        .bold()
-                        .padding(.horizontal)
-                    
-                    ForEach(notificacoesPendentes, id: \.self) { notificacao in
-                        Text(notificacao)
-                            .font(.subheadline)
-                            .padding(.horizontal)
-                    }
-                    
                 }
                 .padding(.top)
             }
         }
         .navigationBarTitle("Acompanhamento", displayMode: .inline)
-    }
-}
-
-struct Habito: Identifiable {
-    let id = UUID()
-    let nome: String
-    let duracao: String
-    let concluido: Bool
-}
-
-struct test: View {
-    var body: some View {
-        TabView {
-            Text("Painel")
-                .tabItem {
-                    Label("Painel", systemImage: "house")
-                }
-            
-           Goals()
-                .tabItem {
-                    Label("Metas", systemImage: "flag")
-                }
-            
-            Achievements()
-                .tabItem {
-                    Label("Hábitos", systemImage: "checkmark.circle")
-                }
+        .onAppear {
+            controllerHabit.fetchHabits()  // Carregar hábitos do banco
+            updateProgresso()
         }
     }
+    
+    private func updateProgresso() {
+        let total = Float(controllerHabit.habits.count)
+        let cumpridos = Float(controllerHabit.habits.filter { $0.habilitarLembretes }.count)
+        progressoDoDia = total > 0 ? (cumpridos / total) * 100 : 0 // Evitar divisão por zero
+        habitosCumpridos = Int(cumpridos)
+    }
 }
-
-
 
 #Preview {
-    Monitoring()
+   Monitoring()
 }
+
