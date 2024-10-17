@@ -24,7 +24,7 @@ final class GoalListViewModel: ObservableObject {
         }
     }
 
-    func insertGoal(nomeGoal: String, descricao: String, categoria: String, dataInicio: String, dataTermino: String, type: String) {
+    func insertGoal(nomeGoal: String, descricao: String, categoria: String, dataInicio: String, dataTermino: String, type: String, progresso: Int) {
         let newGoal = Goal(nomeGoal: nomeGoal, descricao: descricao, categoria: categoria, dataInicio: dataInicio, dataTermino: dataTermino, type: type)
         webService.insertGoal(goal: newGoal) { [weak self] in
             self?.fetchGoals()
@@ -54,8 +54,8 @@ final class HabitListViewModel: ObservableObject {
         }
     }
 
-    func insertHabit(nomeHabito: String, descricaoHabito: String, frequencia: String, dataInicio: String, goalID: UUID?, habilitarLembretes: Bool, frequenciaLembrete: String?, type: String) {
-        let newHabit = Habit(nomeHabito: nomeHabito, descricaoHabito: descricaoHabito, frequencia: frequencia, dataInicio: dataInicio, goalID: goalID, habilitarLembretes: habilitarLembretes, frequenciaLembrete: frequenciaLembrete, type: type)
+    func insertHabit(nomeHabito: String, descricaoHabito: String, frequencia: String, dataInicio: String, goalID: UUID?, habilitarLembretes: Bool, frequenciaLembrete: String?, type: String,progressoH: Int) {
+        let newHabit = Habit(nomeHabito: nomeHabito, descricaoHabito: descricaoHabito, frequencia: frequencia, dataInicio: dataInicio, goalID: goalID, habilitarLembretes: habilitarLembretes, frequenciaLembrete: frequenciaLembrete, type: type, progressoH: progressoH)
         webService.insertHabit(habit: newHabit) { [weak self] in
             self?.fetchHabits()
         }
