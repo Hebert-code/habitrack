@@ -9,28 +9,35 @@ import SwiftUI
 
 struct Habits: View {
     @StateObject var controllerHabit = HabitListViewModel()
-    @StateObject var controllerGoal = GoalListViewModel()
-    
-    @State private var habitos: [(String, String, Double)] = [
-        ("Exercício", "30 minutos", 0.5),
-        ("Meditação", "10 minutos", 0.75)
-    ]
-    @State private var showingAddHabito = false
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                
-                VStack(alignment: .leading, spacing: 30) {
-                    
-                    
-                    HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-                        VStack {
-                            Text("Total de Habitos")
-                                .font(.subheadline)
-                            Text("\(controllerHabit.habits.count)")
-                                .font(.title)
+            VStack {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 15) {
+                        // Resumo de Hábitos
+                        HStack {
+                            VStack {
+                                Text("Total de Hábitos")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
+                                Text("\(controllerHabit.habits.count)")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                            }
+                            .frame(maxWidth: .infinity)
+                            
+                            VStack {
+                                Text("Concluídas")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
+                                Text("\(controllerHabit.habits.filter { $0.habilitarLembretes }.count)")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                            }
+                            .frame(maxWidth: .infinity)
                         }
+<<<<<<< HEAD
                         .frame(maxWidth: .infinity)
                         
                         Spacer()
@@ -49,37 +56,65 @@ struct Habits: View {
                     
                     Text("Lista de hábitos")
                         .font(.headline)
+=======
+                        .padding()
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(10)
+>>>>>>> main
                         .padding(.horizontal)
-                    
-                    VStack(spacing: 10) {
                         
+                        // Cabeçalho
+                        HStack {
+                            Text("Seus Hábitos")
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.black)
+                            Spacer()
+                            Button(action: {
+                                // Ação do filtro
+                            }) {
+                                Text("Filtrar")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                        .padding(.horizontal)
+                        
+                        // Lista de Hábitos
                         ForEach(controllerHabit.habits, id: \._id) { habit in
+<<<<<<< HEAD
                             NavigationLink(destination: HabitDetailView(habit: habit)) {
                                    HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
                                }
                         }
                         .foregroundColor(.black)
+=======
+                            HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
+                                .padding(.horizontal)
+                        }
+
+                        // Botão para Adicionar Hábito
+                        NavigationLink(destination: NewHabitView()) {
+                            Text("Adicionar Hábito")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, maxHeight: 44)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.blue) // Cor de fundo azul
+                                .cornerRadius(10)
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 20)
+>>>>>>> main
                     }
-                    .padding()
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: NewHabitView()) {
-                        Text("Adicionar Hábito")
-                            .font(.headline)
-                        //.frame(width: 20, height: 20)
-                            .frame(width: 350, height: 50)
-                            .foregroundColor(.white)
-                            .background(Color.black)
-                            .cornerRadius(15)
-                            .padding(.horizontal)
-                    }
-                    // .padding(.bottom, 20)
+                    .padding(.top)
                 }
-                //.padding()
-                .background(Color.white)
-                .navigationBarTitle("Hábitos", displayMode: .inline)
+                .background(Color(UIColor.systemGroupedBackground)) // Fundo mais suave
             }
+            .navigationBarTitle("Hábitos", displayMode: .inline)
+        }
+        .onAppear {
+            controllerHabit.fetchHabits() // Método fictício para buscar hábitos
         }
     }
 }
@@ -91,18 +126,28 @@ struct HabitoItem: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "checkmark.circle.fill")
+            Image(systemName: "checkmark.circle.fill") // Ícone para indicar o status do hábito
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40, height: 40)
                 .foregroundColor(.gray)
+                .padding(.trailing, 10)
+            
             VStack(alignment: .leading) {
                 Text(nome)
-                    .font(.subheadline)
+                    .font(.headline)
                 Text(duracao)
-                    .font(.caption)
+                    .font(.subheadline)
                     .foregroundColor(.gray)
             }
             Spacer()
             Text("\(Int(progresso * 100))%")
+                .fontWeight(.bold)
         }
+        .padding()
+        .background(Color.gray.opacity(0.1)) // Estilo de fundo
+        .cornerRadius(10) // Cantos arredondados
+        .padding(.vertical, 5) // Espaço vertical entre as linhas
     }
 }
 

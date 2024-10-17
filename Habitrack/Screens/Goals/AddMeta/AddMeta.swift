@@ -61,6 +61,7 @@ struct AddGoalView: View {
 
                     Section {
                         Button(action: {
+<<<<<<< HEAD
                             if nomeGoal.isEmpty {
                                 alertMessage = "O nome da meta não pode estar vazio."
                                 showAlert = true
@@ -80,6 +81,19 @@ struct AddGoalView: View {
                                 nomeGoal = "" // Limpa o campo após salvar
                                 descricao = ""
                             }
+=======
+                            let formatter = DateFormatter()
+                            formatter.dateFormat = "yyyy-MM-dd"
+                            viewModel.insertGoal(
+                                nomeGoal: nomeGoal,
+                                descricao: descricao,
+                                categoria: categoria,
+                                dataInicio: formatter.string(from: dataInicio),
+                                dataTermino: formatter.string(from: dataTermino),
+                                type: "goal",
+                                progresso: 0
+                            )
+>>>>>>> main
                         }) {
                             Text("Salvar Meta")
                                 .frame(maxWidth: .infinity)
