@@ -38,30 +38,6 @@ struct Goals: View {
                         .cornerRadius(10)
                         .padding(.horizontal)
                         
-                        // Cabeçalho
-                        HStack {
-                            Text("Seus Progressos")
-                                .font(.title3)
-                                .bold()
-                                .foregroundColor(.black)
-                            Spacer()
-                            Button(action: {
-                                // Ação do filtro
-                            }) {
-                                Text("Filtrar")
-                                    .font(.subheadline)
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                        .padding(.horizontal)
-                        
-                        ForEach(controllerGoal.goals) { goal in
-                            NavigationLink(destination: GoalDetailView(goal: goal)) {
-                                MetaRowView(metas: goal)
-                            }
-                            .padding(.horizontal)
-                        }
-
                         // Botão para Adicionar Meta
                         NavigationLink(destination: AddGoalView()) {
                             Text("Adicionar Meta")
@@ -74,6 +50,24 @@ struct Goals: View {
                         }
                         .padding(.horizontal)
                         .padding(.top, 20)
+                        
+                        HStack {
+                            Text("Seus Progressos")
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.black)
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+                        
+                        ForEach(controllerGoal.goals) { goal in
+                            NavigationLink(destination: GoalDetailView(goal: goal)) {
+                                MetaRowView(metas: goal)
+                            }
+                            .padding(.horizontal)
+                            .foregroundColor(.black)
+                        }
+
                     }
                     .padding(.top)
                 }

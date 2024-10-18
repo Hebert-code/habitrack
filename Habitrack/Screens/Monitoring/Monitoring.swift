@@ -8,6 +8,13 @@ struct Monitoring: View {
     
     var body: some View {
         VStack {
+            // Título centralizado no topo
+            Text("Acompanhamento")
+                .font(.headline)
+                .bold()
+                .padding(.top, 20)
+                .frame(maxWidth: .infinity, alignment: .center)
+
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     
@@ -61,7 +68,6 @@ struct Monitoring: View {
                 .padding(.top)
             }
         }
-        .navigationBarTitle("Acompanhamento", displayMode: .inline)
         .onAppear {
             controllerHabit.fetchHabits()  // Carregar hábitos do banco
             updateProgresso()
@@ -79,4 +85,3 @@ struct Monitoring: View {
 #Preview {
    Monitoring()
 }
-

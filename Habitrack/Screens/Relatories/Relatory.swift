@@ -23,7 +23,7 @@ struct Relatory: View {
                         SummaryCard(title: "Progresso médio", value: "\(Int(progressoMedio * 100))%")
                         SummaryCard(title: "Área em destaque", value: "Metas")
                     }
-                    .padding(.horizontal)
+                    .padding()
                 }
                 
                 // Botão Baixar Relatório
@@ -73,24 +73,20 @@ struct Relatory: View {
         .navigationBarTitle("Relatórios", displayMode: .inline)
     }
     
-    // Função para calcular os dados do relatório
+    // Função para calcular os dados do relatório com valores simulados
     func calcularRelatorio() {
-        let metas = controllerGoal.goals
-        let habitos = controllerHabit.habits
+        // Simulando metas alcançadas
+        totalMetasAlcancadas = 5 // Simulando que 5 metas foram alcançadas
         
-        // Total de metas alcançadas
-        totalMetasAlcancadas = metas.filter { $0.type == "concluida" }.count
+        // Simulando progresso médio
+        progressoMedio = 0.75 // Progresso médio de 75%
         
-        // Cálculo do progresso médio
-        let progressoTotal = habitos.map { $0.habilitarLembretes ? 1.0 : 0.0 }.reduce(0, +)
-        progressoMedio = habitos.isEmpty ? 0.0 : progressoTotal / Double(habitos.count)
-        
-        // Desempenho por categoria
-        let categorias = Dictionary(grouping: metas, by: { $0.categoria })
-        performancePorCategoria = categorias.map { categoria, metas in
-            let progresso = metas.filter { $0.type == "concluida" }.count
-            return (categoria, metas.isEmpty ? 0 : (progresso * 100) / metas.count)
-        }
+        // Simulando desempenho por categoria
+        performancePorCategoria = [
+            ("Saúde", 80),
+            ("Trabalho", 60),
+            ("Lazer", 90)
+        ] // Desempenho simulado por categoria
     }
 }
 

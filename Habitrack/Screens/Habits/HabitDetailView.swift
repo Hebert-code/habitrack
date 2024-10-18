@@ -40,7 +40,7 @@ struct HabitDetailView: View {
                 Text(isConcluido ? "Hábito Concluído" : "Marcar como Concluído")
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color.green)
+                    .background(Color.blue)
                     .cornerRadius(8)
             }
             

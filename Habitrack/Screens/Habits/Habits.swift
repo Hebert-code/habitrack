@@ -1,10 +1,3 @@
-//
-//  Habitos.swift
-//  Habitrack
-//
-//  Created by Turma01-14 on 09/10/24.
-//
-
 import SwiftUI
 
 struct Habits: View {
@@ -12,77 +5,70 @@ struct Habits: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 15) {
-                        // Resumo de Hábitos
-                        HStack {
-                            VStack {
-                                Text("Total de Hábitos")
-                                    .font(.subheadline)
-                                    .foregroundColor(.blue)
-                                Text("\(controllerHabit.habits.count)")
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                            }
-                            .frame(maxWidth: .infinity)
-                            
-                            VStack {
-                                Text("Concluídas")
-                                    .font(.subheadline)
-                                    .foregroundColor(.blue)
-                                Text("\(controllerHabit.habits.filter { $0.habilitarLembretes }.count)")
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                            }
-                            .frame(maxWidth: .infinity)
+            ScrollView { // O ScrollView deve ser o container principal
+                VStack(alignment: .leading, spacing: 15) {
+                    // Resumo de Hábitos
+                    HStack {
+                        VStack {
+                            Text("Total de Hábitos")
+                                .font(.subheadline)
+                                .foregroundColor(.blue)
+                            Text("\(controllerHabit.habits.count)")
+                                .font(.title)
+                                .fontWeight(.bold)
                         }
-                        .padding()
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(10)
-                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity)
                         
-                        // Cabeçalho
-                        HStack {
-                            Text("Seus Hábitos")
-                                .font(.title3)
-                                .bold()
-                                .foregroundColor(.black)
-                            Spacer()
-                            Button(action: {
-                                // Ação do filtro
-                            }) {
-                                Text("Filtrar")
-                                    .font(.subheadline)
-                                    .foregroundColor(.blue)
-                            }
+                        VStack {
+                            Text("Concluídas")
+                                .font(.subheadline)
+                                .foregroundColor(.blue)
+                            Text("\(controllerHabit.habits.filter { $0.habilitarLembretes }.count)")
+                                .font(.title)
+                                .fontWeight(.bold)
                         }
                         .frame(maxWidth: .infinity)
                     }
-                    .padding(/*@START_MENU_TOKEN@*/EdgeInsets()/*@END_MENU_TOKEN@*/)
-                    .background(Color(UIColor.systemGray6))
+                    .padding()
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(10)
+                    .padding(.horizontal)
                     
-                    Text("Lista de hábitos")
-                        .font(.headline)
-                        .padding(.horizontal)
-                        
-                        // Lista de Hábitos
-                        ForEach(controllerHabit.habits, id: \._id) { habit in
-                            NavigationLink(destination: HabitDetailView(habit: habit)) {
-                                   HabitoItem(nome: habit.nomeHabito, duracao: habit.descricaoHabito, progresso: habit.habilitarLembretes ? 1.0 : 0.0)
-                               }
-                        }
-                        .foregroundColor(.black)
+                    HStack {
+                        Text("Seus Hábitos")
+                            .font(.title3)
+                            .bold()
+                            .foregroundColor(.black)
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 20)
+                    
+                    NavigationLink(destination: NewHabitView()) {
+                        Text("Adicionar Hábito")
+                            .font(.headline)
+                            .frame(width: 350, height: 50)
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                            .cornerRadius(15)
                     }
                     .padding(.top)
+                    
+                    // Lista de Hábitos
+                    ForEach(controllerHabit.habits, id: \._id) { habit in
+                        NavigationLink(destination: HabitDetailView(habit: habit)) {
+                            HabitoItem(
+                                nome: habit.nomeHabito,
+                                duracao: habit.descricaoHabito,
+                                progresso: habit.progressoH ?? 100)
+                        }
+                    }
+                    .foregroundColor(.black)
                 }
-                .background(Color(UIColor.systemGroupedBackground)) // Fundo mais suave
+                .padding()
+                .background(Color(UIColor.systemGroupedBackground))
             }
             .navigationBarTitle("Hábitos", displayMode: .inline)
-        }
-        .onAppear {
-            controllerHabit.fetchHabits() // Método fictício para buscar hábitos
         }
     }
 }
@@ -90,7 +76,7 @@ struct Habits: View {
 struct HabitoItem: View {
     var nome: String
     var duracao: String
-    var progresso: Double
+    var progresso: Int
     
     var body: some View {
         HStack {
@@ -109,7 +95,7 @@ struct HabitoItem: View {
                     .foregroundColor(.gray)
             }
             Spacer()
-            Text("\(Int(progresso * 100))%")
+            Text("\(progresso)%")
                 .fontWeight(.bold)
         }
         .padding()

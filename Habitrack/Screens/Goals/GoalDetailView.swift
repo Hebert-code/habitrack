@@ -22,7 +22,7 @@ struct GoalDetailView: View {
                 .font(.body)
                 .padding()
             
-            Text("Tipo: \(goal.type)")
+            Text("Tipo: \(goal.categoria)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
             
@@ -39,7 +39,7 @@ struct GoalDetailView: View {
                 Text(isConcluido ? "Meta Concluída" : "Marcar como Concluída")
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color.green)
+                    .background(Color.blue)
                     .cornerRadius(8)
             }
             
@@ -49,3 +49,4 @@ struct GoalDetailView: View {
         .navigationBarTitle("Detalhes da Meta", displayMode: .inline)
     }
 }
+

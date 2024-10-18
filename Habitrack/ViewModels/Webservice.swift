@@ -4,7 +4,7 @@ struct WebService {
 
     // Fetch all habits
     func getAllHabits(completion: @escaping (Result<[Habit], Error>) -> Void) {
-        guard let url = URL(string: "http://127.0.0.1:1880/visualizar/habit") else { return }
+        guard let url = URL(string: "http://10.87.155.50:1880/visualizar/habit") else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
                 completion(.failure(error))
@@ -22,7 +22,7 @@ struct WebService {
 
     // Fetch all goals
     func getAllGoals(completion: @escaping (Result<[Goal], Error>) -> Void) {
-        guard let url = URL(string: "http://127.0.0.1:1880/visualizar/goal") else { return }
+        guard let url = URL(string: "http://10.87.155.50:1880/visualizar/goal") else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
                 completion(.failure(error))
@@ -40,7 +40,7 @@ struct WebService {
 
     // Insert new habit
     func insertHabit(habit: Habit, completion: @escaping () -> Void) {
-        guard let url = URL(string: "http://127.0.0.1:1880/enviar") else { return }
+        guard let url = URL(string: "http://10.87.155.50:1880/enviar") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -56,7 +56,7 @@ struct WebService {
 
     // Insert new goal
     func insertGoal(goal: Goal, completion: @escaping () -> Void) {
-        guard let url = URL(string: "http://127.0.0.1:1880/enviar") else { return }
+        guard let url = URL(string: "http://10.87.155.50:1880/enviar") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

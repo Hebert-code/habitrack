@@ -14,13 +14,16 @@ struct AddGoalView: View {
         NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Detalhes da Meta").font(.headline)) {
+                    Section(header: Text("Nome").font(.headline)){
                         HStack {
                             Image(systemName: "pencil")
                                 .foregroundColor(.blue)
                             TextField("Nome do Goal", text: $nomeGoal)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         }
+                    }
+                    Section(header: Text("Descrição").font(.headline)) {
+
                         
                         HStack {
                             Image(systemName: "note.text")
@@ -28,7 +31,8 @@ struct AddGoalView: View {
                             TextField("Descrição", text: $descricao)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         }
-                        
+                    }
+                    Section{
                         HStack {
                             Image(systemName: "star")
                                 .foregroundColor(.blue)
@@ -58,7 +62,6 @@ struct AddGoalView: View {
                                 .cornerRadius(10)
                         }
                     }
-
                     Section {
                         Button(action: {
                             if nomeGoal.isEmpty {
@@ -73,7 +76,8 @@ struct AddGoalView: View {
                                     categoria: categoria,
                                     dataInicio: formatter.string(from: dataInicio),
                                     dataTermino: formatter.string(from: dataTermino),
-                                    type: "goal"
+                                    type: "goal",
+                                    progresso: nil
                                 )
                                 alertMessage = "Meta salva com sucesso!"
                                 showAlert = true

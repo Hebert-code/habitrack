@@ -21,12 +21,12 @@ struct NewHabitView: View {
             Form {
                 Section(header: Text("Nome").foregroundColor(.black)) {
                     TextField("Nome do Hábito", text: $nomeHabito)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
                 }
                 
                 Section(header: Text("Descrição").foregroundColor(.black)) {
                     TextField("Descrição", text: $descricaoHabito)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                     
                 }
                 
                 Section(header: Text("Detalhes").foregroundColor(.black)) {

@@ -1,10 +1,3 @@
-//
-//  Conquista.swift
-//  Habitrack
-//
-//  Created by Turma01-14 on 09/10/24.
-//
-
 import SwiftUI
 
 struct Achievements: View {
@@ -14,10 +7,6 @@ struct Achievements: View {
     var body: some View {
         NavigationView {
             VStack {
-               // Text("Hábitos e Metas")
-                //    .font(.largeTitle)
-                 //   .padding()
-
                 // DatePicker para selecionar a data
                 DatePicker("Escolha uma data", selection: $selectedDate, displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
@@ -45,7 +34,7 @@ struct Achievements: View {
 struct HistoricoView: View {
     @Environment(\.dismiss) var dismiss
 
-    // Recebe a data selecionada
+    // Recebe a data selecionada (não opcional)
     let selectedDate: Date
 
     // Formatação da data
@@ -99,7 +88,6 @@ struct HistoricoView: View {
         .navigationBarTitle("Histórico", displayMode: .inline)
     }
 }
-
 
 #Preview {
     Achievements()
