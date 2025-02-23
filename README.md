@@ -4,7 +4,7 @@
 [NODE_RED__BADGE]: https://img.shields.io/badge/Node--RED-8F0000?style=for-the-badge&logo=nodered
 [FIGMA__BADGE]: https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white
 
-<h1 align="center" style="font-weight: bold;">Habitrack 💻</h1>
+<h1 align="center" style="font-weight: bold;">HABITRACK 💻</h1>
 
 ![swift][SWIFT__BADGE]
 ![cloudant][CLOUDANT__BADGE]
@@ -21,8 +21,11 @@
 </p>
 
 <p align="center">
-    <img src="![Image](https://github.com/user-attachments/assets/6792e861-8652-48fc-9e97-25c2c3b47753)" alt="Imagem" width="400px">
+    <img src="https://github.com/user-attachments/assets/b7d89e33-5975-4708-831a-ffc30c613b5a" alt="Imagem" width="1000px">
+    <img src="https://github.com/user-attachments/assets/137d07ca-1049-40fc-bac5-76bd546117df" alt="Imagem" width="500px">
+    <img src="https://github.com/user-attachments/assets/99332e09-23d3-463d-9efe-a924340ab8b5" alt="Imagem" width="500px">
 </p>
+
 
 <h2 id="about">📌 About</h2>
 
