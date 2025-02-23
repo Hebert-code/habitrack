@@ -21,78 +21,78 @@
 </p>
 
 <p align="center">
-    <img src="https://drive.google.com/file/d/1kNr5_Twzn7-uk9lhv6KZLAdiISHsQIwJ/view?usp=sharing" alt="Imagem" width="400px">
+    <img src="![Image](https://github.com/user-attachments/assets/6792e861-8652-48fc-9e97-25c2c3b47753)" alt="Imagem" width="400px">
 </p>
 
 <h2 id="about">📌 About</h2>
 
-**Habitrack** é um aplicativo desenvolvido durante o Hacktruck, uma imersão em tecnologias como SwiftUI, Cloudant, Figma e Node-RED. O objetivo do projeto é ajudar os usuários a construir e gerenciar metas e hábitos pessoais de forma eficiente. 
+**Habitrack** is an application developed during Hacktruck, an immersion in technologies such as SwiftUI, Cloudant, Figma, and Node-RED. The goal of the project is to help users build and manage personal goals and habits efficiently.
 
-A solução proposta inclui:
-- Cadastro de metas e hábitos.
-- Gerenciamento do estado e progresso dos objetivos.
-- Geração de relatórios e insights sobre o desempenho.
+The proposed solution includes:
+- Registration of goals and habits.
+- Management of the state and progress of objectives.
+- Generation of reports and insights on performance.
 
-O projeto foi desenvolvido usando **SwiftUI** para o frontend, **Node-RED** para o backend e **Cloudant** como banco de dados. O protótipo foi projetado em **Figma**, e o processo de desenvolvimento incluiu a integração do frontend com o backend e o banco de dados, resultando em um sistema completo para gestão de hábitos.
+The project was developed using **SwiftUI** for the frontend, **Node-RED** for the backend and **Cloudant** as the database. The prototype was designed in **Figma**, and the development process included integrating the frontend with the backend and the database, resulting in a complete system for habit management.
 
 <h2 id="started">🚀 Getting Started</h2>
 
-Aqui estão as instruções para rodar o projeto localmente.
+Here are the instructions to run the project locally.
 
-<h3>Pré-requisitos</h3>
+<h3>Prerequisites</h3>
 
-Antes de começar, você precisará das seguintes ferramentas instaladas:
+Before starting, you will need the following tools installed:
 
 - [Node.js](https://nodejs.org/)
 - [Swift](https://developer.apple.com/swift/)
 - [Node-RED](https://nodered.org/docs/getting-started/)
-- [Cloudant](https://www.ibm.com/cloud/cloudant) (ou uma conta IBM Cloud)
+- [Cloudant](https://www.ibm.com/cloud/cloudant) (or an IBM Cloud account)
 - [Git](https://git-scm.com/)
 
-<h3>Clonagem</h3>
+<h3>Cloning</h3>
 
-Para clonar o repositório, execute o seguinte comando:
+To clone the repository, run the following command:
 
 ```bash
 git clone https://github.com/Hebert-code/habitrack.git
 ```
-<h3>Começando</h3>
-Navegue até a pasta do projeto:
+<h3>Getting Started</h3>
+Navigate to the project folder:
 
 ```bash
 cd habitrack
 ```
-Instale as dependências do Node-RED (se aplicável):
+Install Node-RED dependencies (if applicable):
 
 ```bash
 npm install
 ```
 
-Inicie o Node-RED:
+Start Node-RED:
 
 ```bash
 node-red
 ```
 
-Abra o projeto no Xcode para rodar o frontend em SwiftUI.
+Open the project in Xcode to run the SwiftUI frontend.
 
 <h2 id="routes">📍 Application Routes</h2>
-Aqui estão as principais rotas e funcionalidades do aplicativo:
+Here are the main routes and functionalities of the application:
 
 | route                  | description                                          
 |------------------------|-----------------------------------------------------
-| <kbd>/habits</kbd>     |  Lista todos os hábitos cadastrados.
-| <kbd>/habits/:id</kbd> |	Retorna um hábito específico pelo ID.
-| <kbd>/habit</kbd>      |  Cria um novo hábito (POST).
-| <kbd>/goals</kbd>      | 	Lista todas as metas cadastradas.
-| <kbd>/goals/:id</kbd>  |  Retorna uma meta específica pelo ID.
-| <kbd>/goal</kbd>       |  Cria uma nova meta (POST).
-| <kbd>/reports</kbd>    |  Gera relatórios de progresso.
+| <kbd>/habits</kbd>     |  Lists all registered habits.
+| <kbd>/habits/:id</kbd> | 	Returns a specific habit by ID.
+| <kbd>/habit</kbd>      |  Creates a new habit (POST).
+| <kbd>/goals</kbd>      |  Lists all registered goals.
+| <kbd>/goals/:id</kbd>  |  Returns a specific goal by ID.
+| <kbd>/goal</kbd>       |  Creates a new goal (POST).
+| <kbd>/reports</kbd>    |  Generates progress reports.
 
 
 <h2 id="colab">🤝 Collaborators</h2>
 
-Agradecimento especial a todos que contribuíram para este projeto.
+Special thanks to everyone who contributed to this project.
 
 <table> 
 
@@ -105,19 +105,19 @@ Agradecimento especial a todos que contribuíram para este projeto.
 
 
 <h2 id="contribute">📫 Contribute</h2>
-Se você deseja contribuir com o projeto, siga os passos abaixo:
+If you wish to contribute to the project, follow the steps below:
 
-1. Faça um fork do repositório.
+1. Fork the repository.
 
-2. Crie uma branch para sua feature:
+2. Create a branch for your feature:
 ```bash
 git checkout -b feature/nome-da-feature
 ```
-Siga os padrões de commit.
+Follow the commit patterns.
 
-Abra um Pull Request explicando a funcionalidade ou correção implementada. Se possível, inclua screenshots das modificações visuais.
+Open a Pull Request explaining the functionality or fix implemented. If possible, include screenshots of visual changes.
 
-<h3>Documentações que podem ajudar</h3>
+<h3>Documentations that may help</h3>
 
 
 [📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
