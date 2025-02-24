@@ -106,6 +106,7 @@ Special thanks to everyone who contributed to this project.
  
  </td> <td align="center"> <a href="https://github.com/DelioMg"> <img src="https://avatars.githubusercontent.com/u/97815194?v=4" width="100px;" alt="Délio"/><br> <sub> <b>Délio</b> </sub> </a> </td> </tr> </table>
 
+ </td> <td align="center"> <a href="https://github.com/OliverDokkaebi"> <img src="https://avatars.githubusercontent.com/u/166450663?v=4" width="100px;" alt="Oliver Victor"/><br> <sub> <b>Délio</b> </sub> </a> </td> </tr> </table>
 
 <h2 id="contribute">📫 Contribute</h2>
 If you wish to contribute to the project, follow the steps below:
